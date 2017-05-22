@@ -1,1 +1,267 @@
-SciName,originCercocarpus_montanus,CFPChaenactis_douglasii,CFPCollomia_linearis,CFPCryptantha_virgata,CFPEpilobium,CFPEpilobium_brachycarpum,CFPEpilobium_ciliatum,CFPEriogonum_alatum,CFPEriogonum_umbellatum,CFPGaillardia_aristata,CFPGayophytum_diffusum,CFPHelianthella_parryi,CFPHelianthus_pumilus,CFPIpomopsis_aggregata,CFPJamesia_americana,CFPLappula_occidentalis,CFPOenothera_caespitosa,CFPOenothera_coronopifolia,CFPOenothera_villosa,CFPPhacelia_alba,CFPPhacelia_bakeri,CFPPhacelia_heterophylla,CFPRudbeckia_hirta,CFPRudbeckia_laciniata,CFPArctostaphylos_uva-ursi,MaTGalium_boreale,MaTÌÑTriticosecale_rimpaui,NAÌÑTriticosecale_rimpaui_(dead),NAAliciella_pinnatifida,NAAstragalus_alpinus,NAAstragalus_miser,NAAstragalus_parryi,NAAxyris_amaranthoides,NABesseya_plantaginea,NACarduus/Cirsium,NAChamerion_angustifolium,NADasiphora_fruticosa,NADracocephalum_parviflorum,NAEuphorbia_brachycera,NALaennecia_schiedeana,NALeucopoa_kingii,NALiatris_punctata,NANoccaea_montana,NAOreochrysum_parryi,NAOryzopsis_asperifolia,NAPackera_cana,NAPackera_fendleri,NAPediocactus_simpsonii,NAPhemeranthus_parviflorus,NApoa_sylvestris,NAPrunus_virginiana,NAPseudocymopterus_montanus,NAPseudognaphalium_macounii,NAPulsatilla_patens,NASymphyotrichum_laeve,NASymphyotrichum_porteri,NASymphyotrichum_spathulatum,NATrollius_laxus,NAunable_to_identify,NAMonarda_fistulosa,NotCFPMonarda_pectinata,NotCFPPhysaria_vitulifera,NotCFPSchizachyrium_scoparium,NotCFPTownsendia_grandiflora,NotCFPAcer_glabrum,NTmAchillea_millefolium,NTmAgoseris_aurantiaca,NTmAgoseris_glauca,NTmAgropyron_cristatum,NTmAgrostis_scabra,NTmAllium_cernuum,NTmAndrosace_septentrionalis,NTmAnemone_canadensis,NTmAnemone_cylindrica,NTmAngelica,NTmAntennaria_neglecta,NTmAntennaria_parvifolia,NTmAntennaria_rosea,NTmAquilegia_coerulea,NTmArabis,NTmArabis_fendleri,NTmArabis_glabra,NTmArabis_hirsuta,NTmAralia_nudicaulis,NTmArenaria_hookeri,NTmArtemisia_campestris,NTmArtemisia_filifolia,NTmArtemisia_frigida,NTmArtemisia_ludoviciana,NTmBetula_occidentalis,NTmBromus_ciliatus,NTmBromus_inermis,NTmBromus_tectorum,NTmCalamagrostis_canadensis,NTmCalamagrostis_purpurascens,NTmCampanula_rotundifolia,NTmCarex,NTmCastilleja_integra,NTmCastilleja_miniata,NTmCerastium_arvense,NTmCinna_latifolia,NTmCirsium_arvense,NTmCirsium_canescens,NTmCirsium_undulatum,NTmClematis_columbiana,NTmClematis_ligusticifolia,NTmCornus_sericea,NTmCorydalis_aurea,NTmCrepis,NTmDanthonia_spicata,NTmDelphinium_ÌÑoccidentale,NTmDescurainia,NTmDescurainia_incana,NTmDescurainia_sophia,NTmDodecatheon_pulchellum,NTmElymus,NTmElymus_elymoides,NTmElymus_lanceolatus,NTmElymus_trachycaulus,NTmErigeron,NTmErigeron_compositus,NTmErigeron_divergens,NTmErigeron_flagellaris,NTmErigeron_pumilus,NTmErigeron_subtrinervis,NTmErigeron_vetensis,NTmErysimum_capitatum,NTmFestuca_saximontana,NTmFragaria,NTmGentiana,NTmGeranium_caespitosum,NTmGeranium_richardsonii,NTmGeum_aleppicum,NTmGeum_macrophyllum,NTmHackelia_floribunda,NTmHeracleum_maximum,NTmHeterotheca_villosa,NTmHeuchera_parvifolia,NTmHieracium_fendleri,NTmHordeum_jubatum,NTmHydrophyllum_fendleri,NTmIris_missouriensis,NTmJuncus_arcticus,NTmJuniperus_communis,NTmKoeleria_macrantha,NTmLactuca_serriola,NTmLeucocrinum_montanum,NTmLinaria_vulgaris,NTmLinnaea_borealis,NTmLonicera_involucrata,NTmLupinus_argenteus,NTmMaianthemum_stellatum,NTmMatricaria_discoidea,NTmMentha_arvensis,NTmMoehringia_lateriflora,NTmMoehringia_macrophylla,NTmOrthocarpus_luteus,NTmOxalis_dillenii,NTmOxytropis,NTmOxytropis_lambertii,NTmOxytropis_multiceps,NTmPedicularis_canadensis,NTmPenstemon,NTmPenstemon_glaber,NTmPenstemon_secundiflorus,NTmPenstemon_virens,NTmPhleum_pratense,NTmPoa,NTmPoa_annua,NTmPoa_compressa,NTmPoa_fendleriana,NTmPoa_nemoralis,NTmPoa_palustris,NTmPoa_pratensis,NTmPoa_reflexa,NTmPolygonum_convolvulus,NTmPolygonum_douglasii,NTmPotentilla_concinna,NTmPotentilla_fissa,NTmPotentilla_hippiana,NTmPotentilla_norvegica,NTmPotentilla_pulcherrima,NTmPyrola_chlorantha,NTmRibes,NTmRibes_cereum,NTmRibes_inerme,NTmRibes_leptanthum,NTmRorippa_sphaerocarpa,NTmRosa,NTmRubus,NTmRubus_deliciosus,NTmRubus_idaeus,NTmSalix,NTmSaxifraga_bronchialis,NTmScutellaria_brittonii,NTmSedum_lanceolatum,NTmSenecio,NTmSenecio_eremophilus,NTmSenecio_spartioides,NTmSilene,NTmSilene_antirrhina,NTmSilene_scouleri,NTmSolidago,NTmStachys_palustris,NTmSymphoricarpos_albus,NTmTaraxacum_officinale,NTmThalictrum_fendleri,NTmUrtica_dioica,NTmVeronica_americana,NTmViola,NTmViola_adunca,NTmViola_canadensis,NTmZigadenus_elegans,NTmParonychia_jamesii,SAmAchnatherum_hymenoides,UnkAchnatherum_nelsonii,UnkAchnatherum_scribneri,UnkApocynum_androsaemifolium,UnkBassia_scoparia,UnkCamelina_microcarpa,UnkCarduus_nutans,UnkCystopteris_fragilis,UnkDactylis_glomerata,UnkEquisetum_arvense,UnkGalium_triflorum,UnkGentianella_amarella,UnkGutierrezia_sarothrae,UnkHesperostipa_comata,UnkLithospermum_multiflorum,UnkMertensia_ciliata,UnkMertensia_lanceolata,UnkPascopyrum_smithii,UnkPhysocarpus_monogynus,UnkPiptatherum_micranthum,UnkPseudoroegneria_spicata,UnkPtilagrostis_porteri,UnkSelaginella_densa,UnkSonchus_asper,UnkTragopogon_dubius,UnkVerbascum_thapsus,UnkAmaranthus,WTDAmaranthus_retroflexus,WTDBahia_dissecta,WTDBlepharoneuron_tricholepis,WTDBouteloua_gracilis,WTDBrickellia_eupatorioides,WTDBrickellia_grandiflora,WTDChamaesyce_maculata,WTDChenopodium,WTDChenopodium_capitatum,WTDChenopodium_graveolens,WTDConyza_canadensis,WTDEricameria_nauseosa,WTDEricameria_parryi,WTDMachaeranthera_bigelovii,WTDMentzelia_speciosa,WTDMirabilis_hirsuta,WTDMirabilis_linearis,WTDMuhlenbergia_montana,WTDMuhlenbergia_racemosa,WTDPericome_caudata,WTDSisyrinchium_montanum,WTDSolanum_triflorum,WTDSporobolus_cryptandrus,WTDVerbena,WTDYucca_glauca,WTD
+SciName,Origin,Origin2,Notes
+Acer_glabrum,NTm,,
+Achillea_millefolium,NTm,,Weber 2003: Achillea is a diverse genus in Asia
+Achnatherum_hymenoides,Unk,,
+Achnatherum_nelsonii,Unk,,
+Achnatherum_scribneri,Unk,,
+Agoseris_aurantiaca,NTm,,
+Agoseris_glauca,NTm,,
+Agropyron_cristatum,NTm,,
+Agrostis_scabra,NTm,,
+Aliciella_pinnatifida,NA,,
+Allium_cernuum,NTm,,Weber 2003: Allium is a diverse genus in Asia
+Amaranthus,WTD,,
+Amaranthus_retroflexus,WTD,,
+Androsace_septentrionalis,NTm,,"Weber 2003: Androsace is a diverse genus in Asia, and A. septentrionalis is oroboreal."
+Anemone_canadensis,NTm,,
+Anemone_cylindrica,NTm,,
+Angelica,NTm,,Weber 2003: Angelica is a diverse genus in Asia
+Antennaria_neglecta,NTm,,Weber 2003: Many N. American Antennaria spp. appear to be closely related to Asian spp.
+Antennaria_parvifolia,NTm,,Weber 2003: Many N. American Antennaria spp. appear to be closely related to Asian spp.
+Antennaria_rosea,NTm,,Weber 2003: Many N. American Antennaria spp. appear to be closely related to Asian spp.
+Apocynum_androsaemifolium,Unk,,
+Aquilegia_coerulea,NTm,,Weber 2003: Aquilegia is a diverse genus in Asia
+Arabis,NTm,,
+Arabis_fendleri,NTm,,
+Arabis_glabra,NTm,,
+Arabis_hirsuta,NTm,,
+Aralia_nudicaulis,NTm,,
+Arctostaphylos_uva-ursi,MaT,,
+Arenaria_hookeri,NTm,,Weber 2003: Arenaria (Eremogone) is a diverse genus in Asia
+Artemisia_campestris,NTm,,Weber 2003: Artemisia is a diverse genus in Asia
+Artemisia_filifolia,NTm,,Weber 2003: Artemisia is a diverse genus in Asia
+Artemisia_frigida,NTm,,Weber 2003: Artemisia is a diverse genus in Asia; A. frigida is also in Asia
+Artemisia_ludoviciana,NTm,,Weber 2003: Artemisia is a diverse genus in Asia
+Astragalus_alpinus,NA,,Weber 2003: principally an Asian genus with a small center of diversity in w. N. America
+Astragalus_miser,NA,,Weber 2003: principally an Asian genus with a small center of diversity in w. N. America
+Astragalus_parryi,NA,,Weber 2003: principally an Asian genus with a small center of diversity in w. N. America
+Axyris_amaranthoides,NA,NTm,Weber 2003: Asian origin
+Bahia_dissecta,WTD,,
+Bassia_scoparia,Unk,WTD, Syn. Kochia scoparia; in R&A 1978
+Besseya_plantaginea,NA,,"Weber 2003: Exclusively N. American genus, but must be closely related to the Asian genus Lagotis"
+Betula_occidentalis,NTm,,Weber 2003: Asian origin
+Blepharoneuron_tricholepis,WTD,,
+Bouteloua_gracilis,WTD,,
+Brickellia_eupatorioides,WTD,,
+Brickellia_grandiflora,WTD,,
+Bromus_ciliatus,NTm,,Weber 2003: Bromus (Bromopsis) spp. are also in Eurasia
+Bromus_inermis,NTm,,Weber 2003: Bromus (Bromopsis) inermis is from Eurasia
+Bromus_tectorum,NTm,,
+Calamagrostis_canadensis,NTm,,"Weber 2003: C. canadensis is oroboreal, and many Calamagrostis spp.also occur in Eurasia"
+Calamagrostis_purpurascens,NTm,,Weber: Calamagrostis spp. also occur in Eurasia
+Camelina_microcarpa,Unk,,
+Campanula_rotundifolia,NTm,,
+Carduus/Cirsium,NA,,
+Carduus_nutans,Unk,NTm, Weber 2003: Asian origin
+Carex,NTm,,Weber 2003: Carices are also abundant in Asia
+Castilleja_integra,NTm,,Weber 2003: Castilleja is also found in Asia but impoverished; diversified in N. American desert steppe
+Castilleja_miniata,NTm,,Weber 2003: Castilleja is also found in Asia but impoverished; diversified in N. American desert steppe
+Cerastium_arvense,NTm,,Weber 2003: Asian origin
+Cercocarpus_montanus,CFP,,
+Chaenactis_douglasii,CFP,,
+Chamaesyce_maculata,WTD,,
+Chamerion_angustifolium,NA,CFP,"Syn. Epilobium angustifolium; in R&A 1978; Weber 2003: oroboreal species, and the genus Chamerion also occurs in Asia"
+Chenopodium,WTD,,
+Chenopodium_capitatum,WTD,,
+Chenopodium_graveolens,WTD,,
+Cinna_latifolia,NTm,,Weber 2003: oroboreal
+Cirsium_arvense,NTm,,
+Cirsium_canescens,NTm,,
+Cirsium_undulatum,NTm,,
+Clematis_columbiana,NTm,,
+Clematis_ligusticifolia,NTm,,
+Collomia_linearis,CFP,,
+Conyza_canadensis,WTD,,
+Cornus_sericea,NTm,,
+Corydalis_aurea,NTm,,Weber 2003: Eursian origin
+Crepis,NTm,,
+Cryptantha_virgata,CFP,,
+Cystopteris_fragilis,Unk,,
+Dactylis_glomerata,Unk,,
+Danthonia_spicata,NTm,,
+Dasiphora_fruticosa,NA,NTm,Syn. Potentilla fruticosa; in R&A 1978
+Delphinium_ÌÑoccidentale,NTm,,Weber 2003: Delphinium spp. are diverse in w. N. America and in Asia
+Descurainia,NTm,,
+Descurainia_incana,NTm,,
+Descurainia_sophia,NTm,,
+Dodecatheon_pulchellum,NTm,,
+Dracocephalum_parviflorum,NA,,
+Elymus,NTm,,
+Elymus_elymoides,NTm,,
+Elymus_lanceolatus,NTm,,
+Elymus_trachycaulus,NTm,,
+Epilobium,CFP,,Weber 2003: Ebilobium spp. are also in Asia
+Epilobium_brachycarpum,CFP,,Weber 2003: Ebilobium spp. are also in Asia
+Epilobium_ciliatum,CFP,,Weber 2003: Ebilobium spp. are also in Asia
+Equisetum_arvense,Unk,,
+Ericameria_nauseosa,WTD,,
+Ericameria_parryi,WTD,,
+Erigeron,NTm,,
+Erigeron_compositus,NTm,,
+Erigeron_divergens,NTm,,
+Erigeron_flagellaris,NTm,,
+Erigeron_pumilus,NTm,,
+Erigeron_subtrinervis,NTm,,
+Erigeron_vetensis,NTm,,
+Eriogonum_alatum,CFP,,
+Eriogonum_umbellatum,CFP,,
+Erysimum_capitatum,NTm,,
+Euphorbia_brachycera,NA,,
+Festuca_saximontana,NTm,,Weber 2003: Festuca spp. are also in Asia
+Fragaria,NTm,,
+Gaillardia_aristata,CFP,,
+Galium_boreale,MaT,,
+Galium_triflorum,Unk,,RnA.original = NTm
+Gayophytum_diffusum,CFP,,
+Gentiana,NTm,,
+Gentianella_amarella,Unk,,
+Geranium_caespitosum,NTm,,
+Geranium_richardsonii,NTm,,
+Geum_aleppicum,NTm,,
+Geum_macrophyllum,NTm,,
+Gutierrezia_sarothrae,Unk,,
+Hackelia_floribunda,NTm,,
+Helianthella_parryi,CFP,,
+Helianthus_pumilus,CFP,,
+Heracleum_maximum,NTm,,
+Hesperostipa_comata,Unk,,
+Heterotheca_villosa,NTm,,
+Heuchera_parvifolia,NTm,,
+Hieracium_fendleri,NTm,,
+Hordeum_jubatum,NTm,,
+Hydrophyllum_fendleri,NTm,,
+ÌÑTriticosecale_rimpaui,NA,,Sterile hybrid; seeded post-fire; drop from analysis?
+ÌÑTriticosecale_rimpaui_(dead),NA,,Drop from analyses -- not a species
+Ipomopsis_aggregata,CFP,,
+Iris_missouriensis,NTm,,
+Jamesia_americana,CFP,,
+Juncus_arcticus,NTm,,Weber 2003: oroboreal
+Juniperus_communis,NTm,,
+Koeleria_macrantha,NTm,,
+Lactuca_serriola,NTm,,
+Laennecia_schiedeana,NA,,
+Lappula_occidentalis,CFP,,
+Leucocrinum_montanum,NTm,,
+Leucopoa_kingii,NA,NTm,Syn. Festuca kingii; in R&A 1978; Weber 2003: Leucopoa is a diverse genus in Asia
+Liatris_punctata,NA,,
+Linaria_vulgaris,NTm,,
+Linnaea_borealis,NTm,,
+Lithospermum_multiflorum,Unk,,"Weber 2003: The genus Lithospermum is Eurasian, but N. American species are endemic"
+Lonicera_involucrata,NTm,,
+Lupinus_argenteus,NTm,,
+Machaeranthera_bigelovii,WTD,,
+Maianthemum_stellatum,NTm,,
+Matricaria_discoidea,NTm,,
+Mentha_arvensis,NTm,,
+Mentzelia_speciosa,WTD,,
+Mertensia_ciliata,Unk,,"Weber 2003: one Asiatic species, resembling M. ciliata"
+Mertensia_lanceolata,Unk,,"Weber 2003: one Asiatic species, resembling M. ciliata"
+Mirabilis_hirsuta,WTD,,
+Mirabilis_linearis,WTD,,
+Moehringia_lateriflora,NTm,,
+Moehringia_macrophylla,NTm,,
+Monarda_fistulosa,NotCFP,,
+Monarda_pectinata,NotCFP,,
+Muhlenbergia_montana,WTD,,
+Muhlenbergia_racemosa,WTD,,
+Noccaea_montana,NA,,"Syn. Thlaspi montanum; Weber 2003: belongs to a group of species with a disjunct oroboreal range, including Asian species"
+Oenothera_caespitosa,CFP,,
+Oenothera_coronopifolia,CFP,,
+Oenothera_villosa,CFP,,
+Oreochrysum_parryi,NA,,
+Orthocarpus_luteus,NTm,,
+Oryzopsis_asperifolia,NA,,
+Oxalis_dillenii,NTm,,
+Oxytropis,NTm,,Weber 2003: Oxytropis is a diverse genus in Asia
+Oxytropis_lambertii,NTm,,Weber 2003: Oxytropis is a diverse genus in Asia
+Oxytropis_multiceps,NTm,,Weber 2003: Oxytropis is a diverse genus in Asia
+Packera_cana,NA,NTm,Syn. Senecio canus; in R&A 1978
+Packera_fendleri,NA,,
+Paronychia_jamesii,SAm,,
+Pascopyrum_smithii,Unk,,
+Pedicularis_canadensis,NTm,,"Weber 2003: Pedicularis is a diverse genus in Asia, and in w. N. America there was a center of diversity"
+Pediocactus_simpsonii,NA,,
+Penstemon,NTm,,
+Penstemon_glaber,NTm,,
+Penstemon_secundiflorus,NTm,,
+Penstemon_virens,NTm,,
+Pericome_caudata,WTD,,
+Phacelia_alba,CFP,,
+Phacelia_bakeri,CFP,,
+Phacelia_heterophylla,CFP,,
+Phemeranthus_parviflorus,NA,,
+Phleum_pratense,NTm,,
+Physaria_vitulifera,NotCFP,,
+Physocarpus_monogynus,Unk,,
+Piptatherum_micranthum,Unk,,
+Poa,NTm,,
+Poa_annua,NTm,,
+Poa_compressa,NTm,,
+Poa_fendleriana,NTm,,
+Poa_nemoralis,NTm,,
+Poa_palustris,NTm,,
+Poa_pratensis,NTm,,
+Poa_reflexa,NTm,,
+poa_sylvestris,NA,,
+Polygonum_convolvulus,NTm,,
+Polygonum_douglasii,NTm,,
+Potentilla_concinna,NTm,,
+Potentilla_fissa,NTm,,
+Potentilla_hippiana,NTm,,
+Potentilla_norvegica,NTm,,
+Potentilla_pulcherrima,NTm,,
+Prunus_virginiana,NA,NTm,in R&A 1978
+Pseudocymopterus_montanus,NA,,
+Pseudognaphalium_macounii,NA,,
+Pseudoroegneria_spicata,Unk,,
+Ptilagrostis_porteri,Unk,,Weber 2003: Ptilogrostis is a diverse genus in Asia
+Pulsatilla_patens,NA,,"Weber 2003: Pulsatilla is a diverse genus in Eurasia, and P. patens is also in Asia"
+Pyrola_chlorantha,NTm,,
+Ribes,NTm,,
+Ribes_cereum,NTm,,
+Ribes_inerme,NTm,,
+Ribes_leptanthum,NTm,,
+Rorippa_sphaerocarpa,NTm,,
+Rosa,NTm,,
+Rubus,NTm,,
+Rubus_deliciosus,NTm,,
+Rubus_idaeus,NTm,,
+Rudbeckia_hirta,CFP,,
+Rudbeckia_laciniata,CFP,,
+Salix,NTm,,Weber 2003: Salix is a diverse genus in Asia
+Saxifraga_bronchialis,NTm,,
+Schizachyrium_scoparium,NotCFP,,
+Scutellaria_brittonii,NTm,,
+Sedum_lanceolatum,NTm,,
+Selaginella_densa,Unk,,Weber 2003: very similar to Asian species S. sibirica 
+Senecio,NTm,,
+Senecio_eremophilus,NTm,,
+Senecio_spartioides,NTm,,
+Silene,NTm,,
+Silene_antirrhina,NTm,,
+Silene_scouleri,NTm,,
+Sisyrinchium_montanum,WTD,,
+Solanum_triflorum,WTD,,
+Solidago,NTm,,
+Sonchus_asper,Unk,,
+Sporobolus_cryptandrus,WTD,,
+Stachys_palustris,NTm,,
+Symphoricarpos_albus,NTm,,Weber 2003: one Symphoricarpos species in China
+Symphyotrichum_laeve,NA,,
+Symphyotrichum_porteri,NA,,
+Symphyotrichum_spathulatum,NA,NTm,Syn. Aster occidentalis; in R&A 1978
+Taraxacum_officinale,NTm,,
+Thalictrum_fendleri,NTm,,Weber 2003: Some Thalictrum species occur in Asia
+Townsendia_grandiflora,NotCFP,,Weber 2003: Townsendia is a N. American genus that may be related to the Asian genus Heteropappus
+Tragopogon_dubius,Unk,,
+Trollius_laxus,NA,,Weber 2003: Diverse genus in Eurasia
+unable_to_identify,NA,,
+Urtica_dioica,NTm,,
+Verbascum_thapsus,Unk,,
+Verbena,WTD,,
+Veronica_americana,NTm,,
+Viola,NTm,,
+Viola_adunca,NTm,,
+Viola_canadensis,NTm,,
+Yucca_glauca,WTD,,
+Zigadenus_elegans,NTm,,
