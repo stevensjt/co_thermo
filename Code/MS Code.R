@@ -16,10 +16,10 @@ sp.attr <- #Species origin data
   read_csv("./Data/Raw/HaymanOrigins.csv")
 
 ##Remove bad species
-sp.d <- sp.d[-grep("Triticosecale",sp.d$SciName),] #Sterile hybrid
-sp.attr <- sp.attr[-grep("Triticosecale",sp.attr$SciName),] #Sterile hybrid
-sp.d <- sp.d[-grep("unable",sp.d$SciName),] #Unable to identify
-sp.attr <- sp.attr[-grep("unable",sp.attr$SciName),] #Unable to identify
+sp.d <- sp.d[-grep("Triticosecale",sp.d$SciName),] #Sterile hybrid; N = 30 
+sp.attr <- sp.attr[-grep("Triticosecale",sp.attr$SciName),] #Sterile hybrid; N = 2
+sp.d <- sp.d[-grep("unable",sp.d$SciName),] #Unable to identify; N = 23
+sp.attr <- sp.attr[-grep("unable",sp.attr$SciName),] #Unable to identify; N = 1
 
 ##Set affinity for non-natives to NA
 sp.attr$Origin [grep("yes",sp.attr$Exotic)] <- NA
