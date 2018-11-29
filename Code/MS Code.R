@@ -12,6 +12,8 @@ sp.d <- #Percent cover data. Warnings ok (have to do with NA's)
   read_excel("Data/Raw/tc understory species cover hayman 1997-2012 for jens.xlsx",
              sheet = "data",
              col_types = c(rep("text",2),"numeric",rep("text",7),rep("numeric",7)))
+sp.d$SciName <-  #Replace space w/underscore for consistency w origin data
+  gsub('\\s+','_',sp.d$SciName )
 sp.attr <- #Species origin data
   read_csv("./Data/Raw/HaymanOrigins.csv")
 
@@ -21,32 +23,38 @@ sp.attr <- sp.attr[-grep("Triticosecale",sp.attr$SciName),] #Sterile hybrid; N =
 sp.d <- sp.d[-grep("unable",sp.d$SciName),] #Unable to identify; N = 23
 sp.attr <- sp.attr[-grep("unable",sp.attr$SciName),] #Unable to identify; N = 1
 
+##Remove riparian plots
+sp.d <- #Remove riparian plots
+  sp.d[-which(sp.d$TopoClass=="Riparian"),] 
+sp.attr <- #Reduce species attributes to only those species in upland plots
+  sp.attr[which(sp.attr$SciName%in%sp.d$SciName),]
+
 ##Set affinity for non-natives to NA
 sp.attr$Origin [grep("yes",sp.attr$Exotic)] <- NA
 
 ##Characterize species origin data
 length(unique(sp.d$SciName)) 
-#N = 263 unique taxa in Hayman plot data
+#N = 188 unique taxa in Hayman plot data
 length(unique(sp.attr$SciName)) 
-#N = 263 unique taxa, confirmed in origin data
+#N = 188 unique taxa, confirmed in origin data
 length(grep("_",sp.attr$SciName)) 
-#N = 238 identified species, 25 genera not identified to species
+#N = 171 identified species, 17 genera not identified to species
 length(grep("no",sp.attr$Exotic)) 
-#Of 263 taxa, 231 (87%) were native
-length(which(!is.na(sp.attr$Origin))) #Of 231 native taxa, 218 (94%) were classified by biogeographic affinity.
+#Of 188 taxa, 166 (88%) were native
+length(which(!is.na(sp.attr$Origin))) #Of 166 native taxa, 154 (93%) were classified by biogeographic affinity. 12 were not classified.
 length(which(sp.attr[which( !is.na(sp.attr$Origin) & is.na(sp.attr$Expert_class)),
               "CA_match"]=="spp")) 
-#Of 216 classified species, 98 had exact species matches with CA
+#Of 154 classified species, 68 (44%) had exact species matches with CA
 length(which(sp.attr[which( !is.na(sp.attr$Origin) & is.na(sp.attr$Expert_class)),
                      "CA_match"]=="gen")) 
-#Of 216 classified species, 92 had genus matches with CA
+#Of 154 classified species, 64 (42%) had genus matches with CA
 length(which(sp.attr[which( !is.na(sp.attr$Origin) ),
                      "Expert_class"]=="yes" ))
-#Of 216 classified species, 28 were classified by us without clear matches to CA
+#Of 154 classified species, 22 (14%) were classified by us without clear matches to CA
 
 ##Add species origin data to percent cover data
-sp.d$SciName <- gsub('\\s+','_',sp.d$SciName ) #Replace space w/underscore for consistency
-index <- pmatch(sp.d$SciName,sp.attr$SciName,duplicates.ok = TRUE) #Identify position matches in sp.d
+index <- #Identify position matches in sp.d
+  pmatch(sp.d$SciName,sp.attr$SciName,duplicates.ok = TRUE) 
 sp.d[,"origin"] <- sp.attr[index,"Origin"]
 sp.d[,"origin_binary"] <- sp.d[,"origin"]
 sp.d[,"origin_binary"][sp.d[,"origin_binary"]!="NTm"] <- "Non-NTm"
@@ -59,6 +67,7 @@ sp.d.long <- #create long dataset
                  -TopoClass, -Direction, -FinalCode, -SciName, -Family, -FunctionalGrp, 
                  -NativeStatus,-origin,-origin_binary)
 
+#JTS START HERE
 #Add/re-label/re-classify variables in long dataset
 sp.d.long$year <- as.integer(sp.d.long$year) #Convert year to number
 sp.d.long$presence <- #presence in macroplot ("0" or positive values in subplot)
@@ -67,8 +76,8 @@ sp.d.long$presence_sub <- #presence in subplot
   ifelse(is.na(sp.d.long$cover) | sp.d.long$cover==0,0,1) #(positive values in subplot)
 sp.d.long <- #Remove unknown origins (includes exotics); 218 species remain
   sp.d.long[-which(is.na(sp.d.long$origin_binary)),] 
-sp.d.long <- #Remove riparian plots; 160 species remain
-  sp.d.long[-which(sp.d.long$TopoClass=="Riparian"),] 
+#sp.d.long <- #Remove riparian plots; 160 species remain #deprecated, did above
+#  sp.d.long[-which(sp.d.long$TopoClass=="Riparian"),] 
 sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "Northern"
 sp.d.long$origin_binary[sp.d.long$origin_binary=="Non-NTm"] <- "Southern"
 sp.d.long$FireSeverity <- factor(sp.d.long$FireSeverity, 
