@@ -24,7 +24,7 @@ sp.d <- sp.d[-grep("unable",sp.d$SciName),] #Unable to identify; N = 23
 sp.attr <- sp.attr[-grep("unable",sp.attr$SciName),] #Unable to identify; N = 1
 
 ##Remove riparian plots
-sp.d <- #Remove riparian plots
+sp.d <- #Remove riparian plots (N=3)
   sp.d[-which(sp.d$TopoClass=="Riparian"),] 
 sp.attr <- #Reduce species attributes to only those species in upland plots
   sp.attr[which(sp.attr$SciName%in%sp.d$SciName),]
@@ -67,21 +67,18 @@ sp.d.long <- #create long dataset
                  -TopoClass, -Direction, -FinalCode, -SciName, -Family, -FunctionalGrp, 
                  -NativeStatus,-origin,-origin_binary)
 
-#JTS START HERE
 #Add/re-label/re-classify variables in long dataset
 sp.d.long$year <- as.integer(sp.d.long$year) #Convert year to number
 sp.d.long$presence <- #presence in macroplot ("0" or positive values in subplot)
   ifelse(!is.na(sp.d.long$cover),1,0) 
-sp.d.long$presence_sub <- #presence in subplot
-  ifelse(is.na(sp.d.long$cover) | sp.d.long$cover==0,0,1) #(positive values in subplot)
-sp.d.long <- #Remove unknown origins (includes exotics); 218 species remain
+sp.d.long$presence_sub <- #presence in subplot (positive values in subplot)
+  ifelse(is.na(sp.d.long$cover) | sp.d.long$cover==0,0,1) 
+sp.d.long <- #Remove unknown origins (includes exotics); 154 species remain
   sp.d.long[-which(is.na(sp.d.long$origin_binary)),] 
-#sp.d.long <- #Remove riparian plots; 160 species remain #deprecated, did above
-#  sp.d.long[-which(sp.d.long$TopoClass=="Riparian"),] 
 sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "Northern"
 sp.d.long$origin_binary[sp.d.long$origin_binary=="Non-NTm"] <- "Southern"
 sp.d.long$FireSeverity <- factor(sp.d.long$FireSeverity, 
-                                 levels = c("High", "Moderate", "Low"))
+                                 levels = c("Low", "Moderate", "High"))
 
 ####3. Identify colonizations/extinctions####
 sp.d.long <- 
@@ -124,13 +121,30 @@ sp.d.long <-
                     sum(extinct,na.rm=T)==1, 1, 0)
   )
 
+##3b: Set up table for extinctions/colonizations
 which.extinct <- 
   sp.d.long[which(sp.d.long$abs.fire.extinct == 1 & sp.d.long$year==2003),] %>%
-  group_by(SciName,FireSeverity) %>%
-  summarise(n_plots = length(Plot),
-            origin = unique(origin)
+  group_by(SciName) %>%
+  summarise(hs_plots = length(Plot[FireSeverity == "High"]),
+            ms_plots = length(Plot[FireSeverity == "Moderate"]),
+            ls_plots = length(Plot[FireSeverity == "Low"]),
+            origin = unique(origin_binary)
             )
-clipr::write_clip(which.extinct)
+which.extinct <- which.extinct[with(which.extinct, order(origin,SciName)),]
+#clipr::write_clip(which.extinct)
+which.colonize <- 
+  sp.d.long[which(sp.d.long$abs.fire.colonize == 1 & sp.d.long$year==2003),] %>%
+  group_by(SciName) %>%
+  summarise(hs_plots = length(Plot[FireSeverity == "High"]),
+            ms_plots = length(Plot[FireSeverity == "Moderate"]),
+            ls_plots = length(Plot[FireSeverity == "Low"]),
+            origin = unique(origin_binary)
+  )
+which.colonize <- which.colonize[with(which.colonize, order(origin,SciName)),]
+#clipr::write_clip(which.colonize)
+
+T1<-
+  
 
 ####4. Set up data for plots####
 p.d <- sp.d.long %>% #Data with plots separate
@@ -237,64 +251,70 @@ grid.arrange(F1a_LowSev,F1b_ModSev,F1c_HighSev,nrow=1)
 dev.off()
 
 ##Richness
-F2a_LowSev <- ggplot(
-  sev.class.grp.richness[sev.class.grp.richness$FireSeverity == "Low" ,] ) +
+F2<-
+  ggplot(sev.class.grp.richness) +
+  facet_grid(. ~ FireSeverity) +
   geom_point(aes(x=year, y=mean, col = origin)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
-  scale_color_manual(values = c("blue","darkred"))+
+  scale_color_manual(values = c("gray","black"))+
   geom_errorbar(aes(x=year, ymin = mean - se, ymax = mean + se, 
                     col = origin))+
   geom_line(aes(x=year, y=mean, col = origin))+
-  labs(title = "Low severity", y = "mean plot richness", 
+  labs(title = "burn severity", y = "mean plot richness", 
        col = "biogeographic \naffinity") +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5),  legend.position = "none")
+  theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.92, 0.48))
 
-F2b_ModSev <- ggplot(
-  sev.class.grp.richness[sev.class.grp.richness$FireSeverity == "Moderate" ,] ) +
-  geom_point(aes(x=year, y=mean, col = origin)) + 
-  geom_vline(aes(xintercept = 2002), lty = 2) +
-  scale_color_manual(values = c("blue","darkred"))+
-  geom_errorbar(aes(x=year, ymin = mean - se, ymax = mean + se, 
-                    col = origin))+
-  geom_line(aes(x=year, y=mean, col = origin))+
-  labs(title = "Moderate severity", y = "mean plot richness", 
-       col = "biogeographic \naffinity") +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5),  legend.position = "none")
-
-F2c_HighSev <- ggplot(
-  sev.class.grp.richness[sev.class.grp.richness$FireSeverity == "High" ,] ) +
-  geom_point(aes(x=year, y=mean, col = origin)) + 
-  geom_vline(aes(xintercept = 2002), lty = 2) +
-  scale_color_manual(values = c("blue","darkred"))+
-  geom_errorbar(aes(x=year, ymin = mean - se, ymax = mean + se, 
-                    col = origin))+
-  geom_line(aes(x=year, y=mean, col = origin))+
-  labs(title = "High severity", y = "mean plot richness", 
-       col = "biogeographic \naffinity") +
-  theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.78, 0.51))
-
-pdf(file = paste0("./Figures/MS/Fig1_richness_",Sys.Date(),".pdf"),width=10,height=7)
-grid.arrange(F2a_LowSev,F2b_ModSev,F2c_HighSev,nrow=1)
+pdf(file = paste0("./Figures/MS/Fig2_richness_",Sys.Date(),".pdf"),width=8,height=5)
+F2
+#grid.arrange(F2a_LowSev,F2b_ModSev,F2c_HighSev,nrow=1)
 dev.off()
 
+m2.1 <- lm(richness~origin_binary, data=p.d)
+summary(m2.1)
+m2.2 <- lm(richness~year, #Can adjust origin to N/S and Fire Severity to L/M/H
+           data=p.d[p.d$origin_binary=="Southern" & p.d$FireSeverity == "Low",])
+summary(m2.2)
 
-####6. Plots- ratio####
-F3a <- ggplot(p.d.ratio, aes(x=year,y=Prop.NTM,col=FireSeverity))+
+library(lme4)
+library(pbkrtest)
+GetME_PVals=function(m){
+  require(pbkrtest) #Kenward-Rodger approximation
+  # get the KR-approximated degrees of freedom
+  df.KR <- get_ddf_Lb(m, fixef(m))
+  coefs <- data.frame(coef(summary(m)))
+  # get p-values from the t-distribution using the t-values and approximated degrees of freedom
+  coefs$p.KR <- round(2 * (1 - pt(abs(coefs$t.value), df.KR)),6); #coefs #Everything is significantly different from UB
+  coefs$df = df.KR
+  return(coefs)
+}
+
+m2.1 <- lmer(richness~origin_binary|Plot, data=p.d)
+GetME_PVals(m2.1)
+#m2.2 <- lmer(richness~year + 1|Plot, #Can adjust origin to N/S and Fire Severity to L/M/H
+#           data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "Low",])
+#GetME_PVals(m2.2)
+#mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above.
+
+####6. Plots and stats- ratio####
+F3a <- 
+  ggplot(p.d.ratio, aes(x=year,y=Prop.NTM,col=FireSeverity))+
   geom_point()+
   geom_smooth(method="lm")+
+  scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   labs(title = "proportion of flora \nwitn north-temperate affinity", y= "proportion",
        col = "Fire severity") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
-F3b <- ggplot(sev.class.grp.ratio)+
+
+F3b <- 
+  ggplot(sev.class.grp.ratio)+
   geom_point(aes(x=year, y=mean_Prop.NTM, col = FireSeverity)) + 
   geom_errorbar(aes(x=year, ymin = mean_Prop.NTM - se, ymax = mean_Prop.NTM + se, 
                     col = FireSeverity))+
   geom_vline(aes(xintercept = 2002), lty = 2) +
   geom_line(aes(x=year, y=mean_Prop.NTM, col = FireSeverity))+
+  scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   labs(title = "mean proportion of flora \nwitn north-temperate affinity", y= "proportion",
        col = "Fire severity") +
   theme_bw() +
@@ -304,29 +324,34 @@ pdf(file = paste0("./Figures/MS/Fig3_propNTM",Sys.Date(),".pdf"),width=5,height=
 grid.arrange(F3a, F3b ,nrow=2)
 dev.off()
 
-#Need to make these mixed-effects models and control for plot-level random effects.
-summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="High",]))
-summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Moderate",]))
 summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Low",]))
+summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Moderate",]))
+summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="High",]))
 
-#pdf(file = paste0("./Figures/MS/Fig4_meanpropNTM",Sys.Date(),".pdf"),width=10,height=7)
-#Deprecated and folded into Fig3
-#dev.off()
+#Convergence issues with making these mixed-effects models
+#mr.1=lmer(Prop.NTM ~ year + 1|Plot, data = p.d.ratio[p.d.ratio$FireSeverity=="Low",])
+#GetME_PVals(mr.1)
+
 
 ####7. Plots- colonizations/extinctions####
-pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=10,height=7)
+pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
 ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
   geom_bar(aes(x=year,y=-abs_extinctions),
            position = "dodge", stat = "summary", fun.y = "mean") + 
   geom_bar(aes(x=year,y=abs_colonizations),
            position = "dodge", stat = "summary", fun.y = "mean") +
-  stat_summary(aes(year,abs_colonizations),fun.data = mean_se, geom = "errorbar",position="dodge")+ #Needs work
-  stat_summary(aes(year,-abs_extinctions),fun.data = mean_se, geom = "errorbar",position="dodge")+ #Needs work
+  stat_summary(aes(year,abs_colonizations),
+               fun.data = mean_se, geom = "errorbar",position="dodge")+ 
+  stat_summary(aes(year,-abs_extinctions),
+               fun.data = mean_se, geom = "errorbar",position="dodge")+ 
+  scale_fill_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   scale_colour_manual(values=c("gray","black"))+
+  scale_x_continuous(breaks=c(2002:2007), limits = c(2002, 2007.5),
+                     labels = c("2002 \n(fire year)", c(2003:2007)))+
   geom_hline(aes(yintercept=0))+
+  geom_vline(aes(xintercept = 2002), lty = 2) +
   labs(title="permanent species colonizations or extinctions \nfrom pre-fire",
-       y = "number of species")+
-  xlim(c(2002,2008))+
+       y = "# extinctions                           # colonizations")+
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
