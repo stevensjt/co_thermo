@@ -142,8 +142,6 @@ which.colonize <-
   )
 which.colonize <- which.colonize[with(which.colonize, order(origin,SciName)),]
 #clipr::write_clip(which.colonize)
-
-T1<-
   
 
 ####4. Set up data for plots####
