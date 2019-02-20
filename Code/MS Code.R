@@ -271,7 +271,7 @@ dev.off()
 m2.1 <- lm(richness~origin_binary, data=p.d)
 summary(m2.1)
 m2.2 <- lm(richness~year, #Can adjust origin to N/S and Fire Severity to L/M/H
-           data=p.d[p.d$origin_binary=="Southern" & p.d$FireSeverity == "Low",])
+           data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High",])
 summary(m2.2)
 
 library(lme4)
@@ -287,11 +287,11 @@ GetME_PVals=function(m){
   return(coefs)
 }
 
-m2.1 <- lmer(richness~origin_binary|Plot, data=p.d)
+m2.1 <- lmer(richness~origin_binary + (1|Plot), data=p.d)
 GetME_PVals(m2.1)
-#m2.2 <- lmer(richness~year + 1|Plot, #Can adjust origin to N/S and Fire Severity to L/M/H
-#           data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "Low",])
-#GetME_PVals(m2.2)
+m2.2 <- lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
+           data=p.d[p.d$origin_binary=="Southern" & p.d$FireSeverity == "Low",])
+GetME_PVals(m2.2)
 #mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above.
 
 ####6. Plots and stats- ratio####
@@ -326,9 +326,9 @@ summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Low",]))
 summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Moderate",]))
 summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="High",]))
 
-#Convergence issues with making these mixed-effects models
-#mr.1=lmer(Prop.NTM ~ year + 1|Plot, data = p.d.ratio[p.d.ratio$FireSeverity=="Low",])
-#GetME_PVals(mr.1)
+
+mr.1=lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="High",])
+GetME_PVals(mr.1)
 
 
 ####7. Plots- colonizations/extinctions####
