@@ -4,6 +4,7 @@
 library(readxl) ##version 1.0.0; for read_excel()
 library(tidyverse) ##version 1.2.1; for read_csv (from readr v 1.1.1)
 library(gridExtra) #version 2.3; for grid.arrange()
+library(Hmisc)
 stdErr <- function(x) sqrt(var(x, na.rm = T)/length(na.exclude(x)))
 
 ####1. Read and process data####
@@ -16,6 +17,9 @@ sp.d$SciName <-  #Replace space w/underscore for consistency w origin data
   gsub('\\s+','_',sp.d$SciName )
 sp.attr <- #Species origin data
   read_csv("./Data/Raw/HaymanOrigins.csv")
+env.d <- #Read other environmental data
+    read_excel("Data/Raw/tc plot characteristics.xlsx", sheet = "Sheet1")
+
 
 ##Remove bad species
 sp.d <- sp.d[-grep("Triticosecale",sp.d$SciName),] #Sterile hybrid; N = 30 
@@ -354,3 +358,11 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
   theme(plot.title = element_text(hjust = 0.5))
 
 dev.off()
+
+####8. Analyze and plot environmental data####
+
+##8.1: Compare static variables in 1997
+p1 = 
+  ggplot(env.d, aes (x = FireSeverity, y = Elevation)) +
+  stat_summary()
+  geom_bar()
