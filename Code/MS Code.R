@@ -4,7 +4,7 @@
 library(readxl) ##version 1.0.0; for read_excel()
 library(tidyverse) ##version 1.2.1; for read_csv (from readr v 1.1.1)
 library(gridExtra) #version 2.3; for grid.arrange()
-library(Hmisc)
+library(Hmisc) #for mean_se, maybe deprecated?
 stdErr <- function(x) sqrt(var(x, na.rm = T)/length(na.exclude(x)))
 
 ####1. Read and process data####
@@ -302,6 +302,7 @@ GetME_PVals(m2.2)
 F3a <- 
   ggplot(p.d.ratio, aes(x=year,y=Prop.NTM,col=FireSeverity))+
   geom_point()+
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   geom_smooth(method="lm")+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   labs(title = "proportion of flora \nwitn north-temperate affinity", y= "proportion",
@@ -360,9 +361,105 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
 dev.off()
 
 ####8. Analyze and plot environmental data####
+env.d$FireSeverity <- factor(env.d$FireSeverity, levels = c("low", "moderate", "high"))
 
 ##8.1: Compare static variables in 1997
-p1 = 
-  ggplot(env.d, aes (x = FireSeverity, y = Elevation)) +
-  stat_summary()
-  geom_bar()
+env.d.pre <- env.d[env.d$Year == 1997,]
+env.d.pre$Aspect_Cat <- ifelse(between(env.d.pre$Orientation,135,315),"SW","NE")
+
+pairwise.t.test(env.d.pre$Elevation,env.d.pre$FireSeverity)
+labs_nsd <- rep("a",3) #L-M, M-H, L-H
+p_elev <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = Elevation)) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_dotplot(binaxis = "y", stackdir = "center") +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 2500, label = labs_nsd) +
+  theme_bw()
+
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")]))
+#Pairwise chisq:
+m_asp1 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,2),])
+m_asp2 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(2,3),])
+m_asp3 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,3),])
+p_asp <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, fill = Aspect_Cat)) +
+  geom_bar() +
+  lims(y = c(0,11)) +
+  annotate(geom = "text", x = c(1,2,3), y = 10.3, label = labs_nsd) +
+  theme_bw() +
+  theme(legend.position = c(0.816,0.7), 
+        legend.background = element_blank())
+
+pairwise.t.test(env.d.pre$Slope,env.d.pre$FireSeverity)
+p_slp <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = Slope)) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_elev) +
+  theme_bw()
+
+pairwise.t.test(env.d.pre$soilcov,env.d.pre$FireSeverity)
+labs_lm <- c("a","b","ab") #L-M, M-H, L-H
+p_soil <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = soilcov)) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_lm) +
+  theme_bw()
+
+pairwise.t.test(env.d.pre$littduffcov,env.d.pre$FireSeverity)
+labs_lm <- c("a","b","ab") #L-M, M-H, L-H
+p_litt <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = littduffcov)) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 80, label = labs_lm) +
+  theme_bw()
+
+pairwise.t.test(env.d.pre$woodcov,env.d.pre$FireSeverity)
+p_wood <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = woodcov)) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 20, label = labs_nsd) +
+  theme_bw()
+
+hist(env.d.pre$TPHlivetotal)
+hist(log(env.d.pre$TPHlivetotal))
+pairwise.t.test(log(env.d.pre$TPHlivetotal),env.d.pre$FireSeverity)
+p_tph <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = log(TPHlivetotal))) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 8, label = labs_nsd) +
+  theme_bw()
+
+hist(env.d.pre$Balivetotal)
+hist(log(env.d.pre$Balivetotal))
+pairwise.t.test(log(env.d.pre$Balivetotal),env.d.pre$FireSeverity)
+p_ba <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = log(Balivetotal))) +
+  geom_jitter(width = 0.1) +
+  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 3.4, label = labs_nsd) +
+  theme_bw()
+
+
+pdf(file = paste0("./Figures/MS/FigA3_",Sys.Date(),".pdf"),width=9,height=9)
+grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,ncol=3)
+dev.off()
