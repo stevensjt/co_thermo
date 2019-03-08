@@ -172,12 +172,12 @@ sev.class.grp.cover <- sp.d.long %>% #Data with all plots grouped into severity 
             se = stdErr(cover),
             n_plots = length(unique(Plot))  )
 
-p.d.ratio <- p.d %>% #Plot data with ratios
-  group_by(Plot, FireSeverity, year) %>% 
-  summarise(Prop.NTM = richness[1]/sum(richness), #Northern is first factor level; previously had been subplot level
-            richness.tot = sum(richness),
-            richness.NTM = richness[1],
-            richness.Non_NTM = richness[2])
+#p.d.ratio <- p.d %>% #Plot data with ratios #Deprecated, contained above.
+#  group_by(Plot, FireSeverity, year) %>% 
+#  summarise(Prop.NTM = richness[1]/sum(richness), #Northern is first factor level; previously had been subplot level
+#            richness.tot = sum(richness),
+#            richness.NTM = richness[1],
+#            richness.Non_NTM = richness[2])
 
 sev.class.grp.richness <- p.d.ratio %>% #Data with all plots grouped into severity class, for richness
   group_by(FireSeverity, year) %>% 
@@ -267,16 +267,10 @@ F2<-
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.92, 0.48))
 
-pdf(file = paste0("./Figures/MS/Fig2_richness_",Sys.Date(),".pdf"),width=8,height=5)
+#pdf(file = paste0("./Figures/MS/Fig2_richness_",Sys.Date(),".pdf"),width=8,height=5)
 F2
 #grid.arrange(F2a_LowSev,F2b_ModSev,F2c_HighSev,nrow=1)
-dev.off()
-
-m2.1 <- lm(richness~origin_binary, data=p.d)
-summary(m2.1)
-m2.2 <- lm(richness~year, #Can adjust origin to N/S and Fire Severity to L/M/H
-           data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High",])
-summary(m2.2)
+#dev.off()
 
 library(lme4)
 library(pbkrtest)
@@ -293,10 +287,15 @@ GetME_PVals=function(m){
 
 m2.1 <- lmer(richness~origin_binary + (1|Plot), data=p.d)
 GetME_PVals(m2.1)
-m2.2 <- lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
-           data=p.d[p.d$origin_binary=="Southern" & p.d$FireSeverity == "Low",])
+m2.2 <- 
+  lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
+       data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High",])
 GetME_PVals(m2.2)
-#mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above.
+m2.2.outlier <- #Effect of removing outlier; only testing this for "Southern" and "High" as per reviewer comment.
+  lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
+       data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High" & p.d$Plot!="tc0523",])
+GetME_PVals(m2.2.outlier)
+#mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above. Deprecated, this has been fixed and now using mixed-effects models as appropriate
 
 ####6. Plots and stats- ratio####
 F3a <- 
@@ -327,17 +326,30 @@ pdf(file = paste0("./Figures/MS/Fig3_propNTM",Sys.Date(),".pdf"),width=5,height=
 grid.arrange(F3a, F3b ,nrow=2)
 dev.off()
 
-summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Low",]))
-summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="Moderate",]))
-summary(lm(Prop.NTM~year, data=p.d.ratio[p.d.ratio$FireSeverity=="High",]))
+#Significant differences in pre-fire ratio due to sampling year:
+p.d.ratio$Actual_Year <- 1997
+p.d.ratio$Actual_Year[
+  which(p.d.ratio$Plot%in%c("tc0312", "tc0523", "tc1222", "tc1421", "tc2426", "tc2515"))
+  ] <- 1996
+summary(lm(Prop.NTM~Actual_Year, data=p.d.ratio[p.d.ratio$year==1997,]))
+plot(Prop.NTM~Actual_Year, data=p.d.ratio[p.d.ratio$year==1997,])
+#No significant differences in pre-fire ratio due to sampling year
 
-
-mr.1=lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="High",])
+#Significant trends in ratio over time?
+mr.1 <- #Change between "Low", "Moderate" and "High"
+  lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="Low",])
 GetME_PVals(mr.1)
+#Yes for moderate and high
+
+mr.1.outlier <- #Test effect of removing outlier
+  lmer(Prop.NTM ~ year + (1|Plot), 
+       data = p.d.ratio[p.d.ratio$FireSeverity=="High" & p.d.ratio$Plot!="tc0523",])
+GetME_PVals(mr.1.outlier)
+
 
 
 ####7. Plots- colonizations/extinctions####
-pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
+#pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
 ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
   geom_bar(aes(x=year,y=-abs_extinctions),
            position = "dodge", stat = "summary", fun.y = "mean") + 
@@ -358,21 +370,56 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
+#dev.off()
+
+pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
+ggplot(p.d,aes(fill=FireSeverity)) +
+  facet_wrap(facets = vars(origin_binary)) +
+  geom_bar(aes(x=year,y=-abs_extinctions),
+           position = "dodge", stat = "summary", fun.y = "mean") + 
+  geom_bar(aes(x=year,y=abs_colonizations),
+           position = "dodge", stat = "summary", fun.y = "mean") +
+  stat_summary(aes(year,abs_colonizations),
+               fun.data = mean_se, geom = "errorbar",position="dodge")+ 
+  stat_summary(aes(year,-abs_extinctions),
+               fun.data = mean_se, geom = "errorbar",position="dodge")+ 
+  scale_fill_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
+  scale_colour_manual(values=c("gray","black"))+
+  scale_x_continuous(breaks=c(2002:2007), limits = c(2002, 2007.5),
+                     labels = c("2002 \n(fire year)", c(2003:2007)))+
+  geom_hline(aes(yintercept=0))+
+  geom_vline(aes(xintercept = 2002), lty = 2) +
+  labs(title="permanent species colonizations or extinctions \nfrom pre-fire",
+       y = "# extinctions                           # colonizations")+
+  theme_bw() +
+  theme(plot.title = element_text(hjust = 0.5),
+        legend.position = c(0.9,0.18))
 dev.off()
+
+
 
 ####8. Analyze and plot environmental data####
 env.d$FireSeverity <- factor(env.d$FireSeverity, levels = c("low", "moderate", "high"))
-
-##8.1: Compare static variables in 1997
 env.d.pre <- env.d[env.d$Year == 1997,]
 env.d.pre$Aspect_Cat <- ifelse(between(env.d.pre$Orientation,135,315),"SW","NE")
+env.d.pre$prop.NTM <- c(p.d.ratio[p.d.ratio$year == 1997,"Prop.NTM"])$Prop.NTM
+  
+##8.1: ComparePlots sampled in 1996 vs 1997:
+env.d.pre$Actual_Year <- 1997
+env.d.pre$Actual_Year[grep("1996",env.d.pre$VisitDate)] <- 1996
+table(env.d.pre[,c("FireSeverity","Actual_Year")])
+chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(1,2),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(2,3),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(1,3),])
+#No significant differences from expected distribution of actual sample years across burn severity classes.
 
+##8.2: Compare environmental variables in 1997 (prefire)
 pairwise.t.test(env.d.pre$Elevation,env.d.pre$FireSeverity)
 labs_nsd <- rep("a",3) #L-M, M-H, L-H
 p_elev <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = Elevation)) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   #geom_dotplot(binaxis = "y", stackdir = "center") +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
@@ -381,9 +428,9 @@ p_elev <-
 
 chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")]))
 #Pairwise chisq:
-m_asp1 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,2),])
-m_asp2 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(2,3),])
-m_asp3 <- chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,3),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,2),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(2,3),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,3),])
 p_asp <- 
   ggplot(env.d.pre, aes (x = FireSeverity, fill = Aspect_Cat)) +
   geom_bar() +
@@ -397,10 +444,10 @@ pairwise.t.test(env.d.pre$Slope,env.d.pre$FireSeverity)
 p_slp <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = Slope)) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
-  annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_elev) +
+  annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_nsd) +
   theme_bw()
 
 pairwise.t.test(env.d.pre$soilcov,env.d.pre$FireSeverity)
@@ -408,7 +455,7 @@ labs_lm <- c("a","b","ab") #L-M, M-H, L-H
 p_soil <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = soilcov)) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_lm) +
@@ -419,7 +466,7 @@ labs_lm <- c("a","b","ab") #L-M, M-H, L-H
 p_litt <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = littduffcov)) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 80, label = labs_lm) +
@@ -429,7 +476,7 @@ pairwise.t.test(env.d.pre$woodcov,env.d.pre$FireSeverity)
 p_wood <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = woodcov)) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 20, label = labs_nsd) +
@@ -441,7 +488,7 @@ pairwise.t.test(log(env.d.pre$TPHlivetotal),env.d.pre$FireSeverity)
 p_tph <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = log(TPHlivetotal))) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 8, label = labs_nsd) +
@@ -453,13 +500,46 @@ pairwise.t.test(log(env.d.pre$Balivetotal),env.d.pre$FireSeverity)
 p_ba <- 
   ggplot(env.d.pre, aes (x = FireSeverity, y = log(Balivetotal))) +
   geom_jitter(width = 0.1) +
-  geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 3.4, label = labs_nsd) +
   theme_bw()
 
+#hist(env.d.pre$CanCovlive)
+pairwise.t.test(env.d.pre$CanCovlive,env.d.pre$FireSeverity)
+p_cc <- 
+  ggplot(env.d.pre, aes (x = FireSeverity, y = CanCovlive)) +
+  geom_jitter(width = 0.1) +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
+  stat_summary(fun.y = mean, geom = "point", col = "blue") +
+  annotate(geom = "text", x = c(1,2,3), y = 60, label = labs_nsd) +
+  theme_bw()
+
+pdf(file = paste0("./Figures/MS/FigA2_",Sys.Date(),".pdf"),width=9,height=9)
+grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,p_cc, ncol=3)
+dev.off()
+
+##8.3: Compare biogeographic ratio in 1997 (prefire) as a function of canopy cover
+summary(lm(prop.NTM ~ CanCovlive, data = env.d.pre))
+p_cc_ntm_all <-
+  ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovlive)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  theme_bw() +
+  labs(title = "all plots")
+summary(lm(prop.NTM ~ CanCovlive, data = env.d.pre[env.d.pre$FireSeverity=="low",]))
+p_cc_ntm_ls <-
+  ggplot(env.d.pre[env.d.pre$FireSeverity=="low",], aes (y = prop.NTM, x = CanCovlive)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  theme_bw()+
+  labs(title = "low severity plots only")
+
 
 pdf(file = paste0("./Figures/MS/FigA3_",Sys.Date(),".pdf"),width=9,height=9)
-grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,ncol=3)
+grid.arrange(p_cc_ntm_all,p_cc_ntm_ls,ncol=1)
 dev.off()
