@@ -4,7 +4,7 @@
 library(readxl) ##version 1.0.0; for read_excel()
 library(tidyverse) ##version 1.2.1; for read_csv (from readr v 1.1.1)
 library(gridExtra) #version 2.3; for grid.arrange()
-library(Hmisc) #for mean_se, maybe deprecated?
+#library(Hmisc) #for mean_se, maybe deprecated?
 stdErr <- function(x) sqrt(var(x, na.rm = T)/length(na.exclude(x)))
 
 ####1. Read and process data####
@@ -205,8 +205,7 @@ sev.class.grp.ratio <- p.d.ratio %>% #Data with all plots grouped into severity 
 ##Cover is pretty low and not really that interesting.
 F1a_LowSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                  sev.class.grp.cover$FireSeverity == "Low" ,]
-) +
+                  sev.class.grp.cover$FireSeverity == "Low" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
@@ -220,8 +219,7 @@ F1a_LowSev <- ggplot(
 
 F1b_ModSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                        sev.class.grp.cover$FireSeverity == "Moderate" ,]
-) +
+                        sev.class.grp.cover$FireSeverity == "Moderate" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
@@ -235,8 +233,7 @@ F1b_ModSev <- ggplot(
 
 F1c_HighSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                        sev.class.grp.cover$FireSeverity == "High" ,]
-) +
+                        sev.class.grp.cover$FireSeverity == "High" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
@@ -248,9 +245,9 @@ F1c_HighSev <- ggplot(
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.78, 0.91))
 
-pdf(file = paste0("./Figures/MS/FigA1_",Sys.Date(),".pdf"),width=10,height=7)
+#pdf(file = paste0("./Figures/MS/FigA1_",Sys.Date(),".pdf"),width=10,height=7)
 grid.arrange(F1a_LowSev,F1b_ModSev,F1c_HighSev,nrow=1)
-dev.off()
+#dev.off()
 
 ##Richness
 F2<-
@@ -305,7 +302,7 @@ F3a <-
   geom_smooth(method="lm")+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   labs(title = "proportion of flora \nwitn north-temperate affinity", y= "proportion",
-       col = "Fire severity") +
+       col = "Fire severity", tag = "a") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -318,7 +315,7 @@ F3b <-
   geom_line(aes(x=year, y=mean_Prop.NTM, col = FireSeverity))+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   labs(title = "mean proportion of flora \nwitn north-temperate affinity", y= "proportion",
-       col = "Fire severity") +
+       col = "Fire severity", tag = "b") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -337,11 +334,11 @@ plot(Prop.NTM~Actual_Year, data=p.d.ratio[p.d.ratio$year==1997,])
 
 #Significant trends in ratio over time?
 mr.1 <- #Change between "Low", "Moderate" and "High"
-  lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="Low",])
+  lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="High",])
 GetME_PVals(mr.1)
 #Yes for moderate and high
 
-mr.1.outlier <- #Test effect of removing outlier
+mr.1.outlier <- #Test effect of removing outlier; negligible. 
   lmer(Prop.NTM ~ year + (1|Plot), 
        data = p.d.ratio[p.d.ratio$FireSeverity=="High" & p.d.ratio$Plot!="tc0523",])
 GetME_PVals(mr.1.outlier)
@@ -372,7 +369,7 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
 
 #dev.off()
 
-pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
+#pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
 ggplot(p.d,aes(fill=FireSeverity)) +
   facet_wrap(facets = vars(origin_binary)) +
   geom_bar(aes(x=year,y=-abs_extinctions),
@@ -394,23 +391,25 @@ ggplot(p.d,aes(fill=FireSeverity)) +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         legend.position = c(0.9,0.18))
-dev.off()
+#dev.off()
 
 
 
 ####8. Analyze and plot environmental data####
 env.d$FireSeverity <- factor(env.d$FireSeverity, levels = c("low", "moderate", "high"))
 env.d.pre <- env.d[env.d$Year == 1997,]
-env.d.pre$Aspect_Cat <- ifelse(between(env.d.pre$Orientation,135,315),"SW","NE")
+env.d.pre$Aspect <- ifelse(between(env.d.pre$Orientation,135,315),"SW","NE")
 env.d.pre$prop.NTM <- c(p.d.ratio[p.d.ratio$year == 1997,"Prop.NTM"])$Prop.NTM
   
 ##8.1: ComparePlots sampled in 1996 vs 1997:
 env.d.pre$Actual_Year <- 1997
 env.d.pre$Actual_Year[grep("1996",env.d.pre$VisitDate)] <- 1996
 table(env.d.pre[,c("FireSeverity","Actual_Year")])
+chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")]))
 chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(1,2),])
 chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(2,3),])
 chisq.test(table(env.d.pre[,c("FireSeverity","Actual_Year")])[c(1,3),])
+
 #No significant differences from expected distribution of actual sample years across burn severity classes.
 
 ##8.2: Compare environmental variables in 1997 (prefire)
@@ -424,21 +423,24 @@ p_elev <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 2500, label = labs_nsd) +
-  theme_bw()
+  theme_bw() +
+  labs(y = "elevation (m)") +
+  theme(axis.title.x = element_blank())
 
-chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")]))
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect")]))
 #Pairwise chisq:
-chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,2),])
-chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(2,3),])
-chisq.test(table(env.d.pre[,c("FireSeverity","Aspect_Cat")])[c(1,3),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect")])[c(1,2),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect")])[c(2,3),])
+chisq.test(table(env.d.pre[,c("FireSeverity","Aspect")])[c(1,3),])
 p_asp <- 
-  ggplot(env.d.pre, aes (x = FireSeverity, fill = Aspect_Cat)) +
+  ggplot(env.d.pre, aes (x = FireSeverity, fill = Aspect)) +
   geom_bar() +
   lims(y = c(0,11)) +
   annotate(geom = "text", x = c(1,2,3), y = 10.3, label = labs_nsd) +
   theme_bw() +
   theme(legend.position = c(0.816,0.7), 
-        legend.background = element_blank())
+        legend.background = element_blank(),
+        axis.title.x = element_blank())
 
 pairwise.t.test(env.d.pre$Slope,env.d.pre$FireSeverity)
 p_slp <- 
@@ -448,7 +450,9 @@ p_slp <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_nsd) +
-  theme_bw()
+  theme_bw()  +
+  labs(y = "slope (%)") +
+  theme(axis.title.x = element_blank())
 
 pairwise.t.test(env.d.pre$soilcov,env.d.pre$FireSeverity)
 labs_lm <- c("a","b","ab") #L-M, M-H, L-H
@@ -459,7 +463,9 @@ p_soil <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 42, label = labs_lm) +
-  theme_bw()
+  theme_bw() +
+  labs(y = "soil cover (%)") +
+  theme(axis.title.x = element_blank())
 
 pairwise.t.test(env.d.pre$littduffcov,env.d.pre$FireSeverity)
 labs_lm <- c("a","b","ab") #L-M, M-H, L-H
@@ -470,7 +476,9 @@ p_litt <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 80, label = labs_lm) +
-  theme_bw()
+  theme_bw() +
+  labs(y = "litter and duff cover (%)")+
+  theme(axis.title.x = element_blank())
 
 pairwise.t.test(env.d.pre$woodcov,env.d.pre$FireSeverity)
 p_wood <- 
@@ -480,7 +488,9 @@ p_wood <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 20, label = labs_nsd) +
-  theme_bw()
+  theme_bw() +
+  labs(y = "coarse woody debris cover (%)") +
+  theme(axis.title.x = element_blank())
 
 hist(env.d.pre$TPHlivetotal)
 hist(log(env.d.pre$TPHlivetotal))
@@ -492,7 +502,9 @@ p_tph <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 8, label = labs_nsd) +
-  theme_bw()
+  theme_bw() +
+  labs(y = expression(paste("tree density (trees ", ha^-1, ")")),
+       x = "fire severity")
 
 hist(env.d.pre$Balivetotal)
 hist(log(env.d.pre$Balivetotal))
@@ -504,40 +516,51 @@ p_ba <-
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 3.4, label = labs_nsd) +
-  theme_bw()
+  theme_bw() +
+  labs(y = expression(paste("basal area (", m^2*ha^-1, ")")),
+       x = "fire severity")
 
-#hist(env.d.pre$CanCovlive)
-pairwise.t.test(env.d.pre$CanCovlive,env.d.pre$FireSeverity)
+
+#hist(env.d.pre$CanCovLive_FVS)
+pairwise.t.test(env.d.pre$CanCovLive_FVS,env.d.pre$FireSeverity)
 p_cc <- 
-  ggplot(env.d.pre, aes (x = FireSeverity, y = CanCovlive)) +
+  ggplot(env.d.pre, aes (x = FireSeverity, y = CanCovLive_FVS)) +
   geom_jitter(width = 0.1) +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
   annotate(geom = "text", x = c(1,2,3), y = 60, label = labs_nsd) +
-  theme_bw()
+  theme_bw() +
+  labs(y = "canopy cover (%)",
+       x = "fire severity")
 
-pdf(file = paste0("./Figures/MS/FigA2_",Sys.Date(),".pdf"),width=9,height=9)
+pdf(file = paste0("./Figures/MS/FigA2_",Sys.Date(),".pdf"),width=8,height=10)
 grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,p_cc, ncol=3)
 dev.off()
 
 ##8.3: Compare biogeographic ratio in 1997 (prefire) as a function of canopy cover
-summary(lm(prop.NTM ~ CanCovlive, data = env.d.pre))
+summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre))
 p_cc_ntm_all <-
-  ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovlive)) +
+  ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovLive_FVS)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", color = "black") +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw() +
-  labs(title = "all plots")
-summary(lm(prop.NTM ~ CanCovlive, data = env.d.pre[env.d.pre$FireSeverity=="low",]))
+  labs(title = "all plots", 
+       y = "proportion of flora \nwitn north-temperate affinity", 
+       x = "pre-fire canopy cover (%)", tag = "a") +
+  theme(plot.title = element_text(hjust = 0.5))
+summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre[env.d.pre$FireSeverity=="low",]))
 p_cc_ntm_ls <-
-  ggplot(env.d.pre[env.d.pre$FireSeverity=="low",], aes (y = prop.NTM, x = CanCovlive)) +
+  ggplot(env.d.pre[env.d.pre$FireSeverity=="low",], aes (y = prop.NTM, x = CanCovLive_FVS)) +
   geom_point() +
-  geom_smooth(method = "lm") +
+  geom_smooth(method = "lm", color = "black") +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw()+
-  labs(title = "low severity plots only")
+  labs(title = "low severity plots only", 
+       y = "proportion of flora \nwitn north-temperate affinity", 
+       x = "pre-fire canopy cover (%)", tag = "b") +
+  theme(plot.title = element_text(hjust = 0.5))
 
 
 pdf(file = paste0("./Figures/MS/FigA3_",Sys.Date(),".pdf"),width=9,height=9)
