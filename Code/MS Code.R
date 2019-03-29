@@ -301,7 +301,7 @@ F3a <-
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   geom_smooth(method="lm")+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(title = "proportion of flora \nwitn north-temperate affinity", y= "proportion",
+  labs(y= "proportion of flora \nwitn north-temperate affinity",
        col = "Fire severity", tag = "a") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -314,7 +314,7 @@ F3b <-
   geom_vline(aes(xintercept = 2002), lty = 2) +
   geom_line(aes(x=year, y=mean_Prop.NTM, col = FireSeverity))+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(title = "mean proportion of flora \nwitn north-temperate affinity", y= "proportion",
+  labs(y= "meanproportion of flora \nwitn north-temperate affinity",
        col = "Fire severity", tag = "b") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -369,7 +369,7 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
 
 #dev.off()
 
-#pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
+pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
 ggplot(p.d,aes(fill=FireSeverity)) +
   facet_wrap(facets = vars(origin_binary)) +
   geom_bar(aes(x=year,y=-abs_extinctions),
@@ -386,12 +386,11 @@ ggplot(p.d,aes(fill=FireSeverity)) +
                      labels = c("2002 \n(fire year)", c(2003:2007)))+
   geom_hline(aes(yintercept=0))+
   geom_vline(aes(xintercept = 2002), lty = 2) +
-  labs(title="permanent species colonizations or extinctions \nfrom pre-fire",
-       y = "# extinctions                           # colonizations")+
+  labs(y = "# extinctions                            # colonizations")+
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         legend.position = c(0.9,0.18))
-#dev.off()
+dev.off()
 
 
 
@@ -435,9 +434,11 @@ chisq.test(table(env.d.pre[,c("FireSeverity","Aspect")])[c(1,3),])
 p_asp <- 
   ggplot(env.d.pre, aes (x = FireSeverity, fill = Aspect)) +
   geom_bar() +
-  lims(y = c(0,11)) +
-  annotate(geom = "text", x = c(1,2,3), y = 10.3, label = labs_nsd) +
+  lims(y = c(0,12)) +
+  annotate(geom = "text", x = c(1,2,3), y = 11.5, label = labs_nsd) +
   theme_bw() +
+  scale_fill_manual(values=c("cadetblue3","darkgoldenrod2"))+
+  scale_y_continuous(breaks =  c(0,2,4,6,8,10)) +
   theme(legend.position = c(0.816,0.7), 
         legend.background = element_blank(),
         axis.title.x = element_blank())
@@ -496,12 +497,12 @@ hist(env.d.pre$TPHlivetotal)
 hist(log(env.d.pre$TPHlivetotal))
 pairwise.t.test(log(env.d.pre$TPHlivetotal),env.d.pre$FireSeverity)
 p_tph <- 
-  ggplot(env.d.pre, aes (x = FireSeverity, y = log(TPHlivetotal))) +
+  ggplot(env.d.pre, aes (x = FireSeverity, y = TPHlivetotal)) +
   geom_jitter(width = 0.1) +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
-  annotate(geom = "text", x = c(1,2,3), y = 8, label = labs_nsd) +
+  annotate(geom = "text", x = c(1,2,3), y = 2100, label = labs_nsd) +
   theme_bw() +
   labs(y = expression(paste("tree density (trees ", ha^-1, ")")),
        x = "fire severity")
@@ -510,12 +511,12 @@ hist(env.d.pre$Balivetotal)
 hist(log(env.d.pre$Balivetotal))
 pairwise.t.test(log(env.d.pre$Balivetotal),env.d.pre$FireSeverity)
 p_ba <- 
-  ggplot(env.d.pre, aes (x = FireSeverity, y = log(Balivetotal))) +
+  ggplot(env.d.pre, aes (x = FireSeverity, y = Balivetotal)) +
   geom_jitter(width = 0.1) +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   stat_summary(fun.data = mean_se, geom ="errorbar", col = "blue") + 
   stat_summary(fun.y = mean, geom = "point", col = "blue") +
-  annotate(geom = "text", x = c(1,2,3), y = 3.4, label = labs_nsd) +
+  annotate(geom = "text", x = c(1,2,3), y = 24, label = labs_nsd) +
   theme_bw() +
   labs(y = expression(paste("basal area (", m^2*ha^-1, ")")),
        x = "fire severity")
