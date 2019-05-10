@@ -10,15 +10,15 @@ stdErr <- function(x) sqrt(var(x, na.rm = T)/length(na.exclude(x)))
 ####1. Read and process data####
 ##Read component data
 sp.d <- #Percent cover data. Warnings ok (have to do with NA's)
-  read_excel("Data/Raw/tc understory species cover hayman 1997-2012 for jens.xlsx",
+  read_excel("Data/Raw MS/understory species cover.xlsx",
              sheet = "data",
              col_types = c(rep("text",2),"numeric",rep("text",7),rep("numeric",7)))
 sp.d$SciName <-  #Replace space w/underscore for consistency w origin data
   gsub('\\s+','_',sp.d$SciName )
 sp.attr <- #Species origin data
-  read_csv("./Data/Raw/HaymanOrigins.csv")
+  read_csv("./Data/Raw MS/affinities.csv")
 env.d <- #Read other environmental data
-    read_excel("Data/Raw/tc plot characteristics.xlsx", sheet = "Sheet1")
+    read_excel("Data/Raw MS/plot characteristics.xlsx", sheet = "Sheet1")
 
 
 ##Remove bad species

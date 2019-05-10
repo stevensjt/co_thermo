@@ -1,0 +1,261 @@
+SciName,Origin,CA_match,Exotic,Expert_class,Source,Notes
+Acer_glabrum,NTm,spp,no,,Stevens,
+Achillea_millefolium,NTm,spp,no,,Stevens,
+Achnatherum_hymenoides,NTm,spp,no,yes,Miller,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Achnatherum_nelsonii,NTm,spp,no,yes,Miller,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Achnatherum_scribneri,NTm,gen,no,yes,Miller,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Agoseris_aurantiaca,NTm,spp,no,,Stevens,
+Agoseris_glauca,NTm,spp,no,,Stevens,
+Agropyron_cristatum,NTm,gen,yes,,Stevens,
+Agrostis_scabra,NTm,spp,no,,Stevens,
+Aliciella_pinnatifida,CFP,no,no,yes,Miller,All other Aliciellas and most Polemoniaceaes are CFP
+Allium_cernuum,NTm,gen,no,,Stevens,
+Amaranthus,WTD,gen,yes,,Stevens,
+Amaranthus_retroflexus,WTD,spp,yes,,Stevens,
+Androsace_septentrionalis,NTm,spp,no,,Stevens,
+Anemone_canadensis,NTm,gen,no,,Stevens,
+Anemone_cylindrica,NTm,gen,no,,Stevens,
+Angelica,NTm,gen,no,,Stevens,
+Antennaria_neglecta,NTm,gen,no,,Stevens,
+Antennaria_parvifolia,NTm,gen,no,,Stevens,
+Antennaria_rosea,NTm,spp,no,,Stevens,
+Apocynum_androsaemifolium,NA,spp,no,,Miller,R&A didn't classify any Apocynaceae
+Aquilegia_coerulea,NTm,gen,no,,Stevens,
+Arabis_fendleri,NTm,gen,no,,Stevens,
+Arabis_glabra,NTm,spp,no,,Stevens,
+Arabis_hirsuta,NTm,spp,no,,Stevens,
+Aralia_nudicaulis,NTm,gen,no,,Stevens,
+Arctostaphylos_uva-ursi,NTm,spp,no,,Miller,
+Arenaria_hookeri,NTm,gen,no,,Stevens,
+Artemisia_campestris,NTm,spp,no,,Stevens,
+Artemisia_filifolia,NTm,gen,no,,Stevens,
+Artemisia_frigida,NTm,gen,no,,Stevens,
+Artemisia_ludoviciana,NTm,spp,no,,Stevens,
+Astragalus_alpinus,MaT,gen,no,,Miller,R&A called all Astragalus MaT
+Astragalus_miser,MaT,gen,no,,Miller,R&A called all Astragalus MaT
+Astragalus_parryi,MaT,gen,no,,Miller,R&A called all Astragalus MaT
+Axyris_amaranthoides,NTm,no,yes,yes,Miller,
+Bahia_dissecta,WTD,spp,no,,Stevens,
+Bassia_scoparia,WTD,gen,yes,,Fornwalt, Syn. Kochia scoparia; in R&A 1978
+Besseya_plantaginea,NA,no,no,,Miller,"Plantago (only Plantaginaceae in R&A) is WTD, but some other lamiales are NTm. Former Scrophulariaceae, so taxonomy has changed significantly since R&A's time."
+Betula_occidentalis,NTm,spp,no,,Stevens,
+Blepharoneuron_tricholepis,WTD,spp,no,,Stevens,
+Bouteloua_gracilis,WTD,spp,no,,Stevens,
+Brickellia_eupatorioides,WTD,gen,no,,Stevens,
+Brickellia_grandiflora,WTD,spp,no,,Stevens,
+Bromus_ciliatus,NTm,spp,no,,Stevens,
+Bromus_inermis,NTm,spp,yes,,Stevens,
+Bromus_tectorum,NTm,spp,yes,,Stevens,
+Calamagrostis_canadensis,NTm,spp,no,,Stevens,
+Calamagrostis_purpurascens,NTm,spp,no,,Stevens,
+Camelina_microcarpa,NA,spp,yes,,Miller,"hard to say, has WTD and NTm relatives"
+Campanula_rotundifolia,NTm,spp,no,,Stevens,
+Carduus/Cirsium,NA,gen,yes,,Miller,"Cirsium is NTm according to R&A, but many are exotic, Carduus is all exotic in NA"
+Carduus_nutans,NTm,spp,yes,,Miller,
+Carex,NTm,gen,no,,Stevens,
+Castilleja_integra,NTm,gen,no,,Stevens,
+Castilleja_miniata,NTm,spp,no,,Stevens,
+Cerastium_arvense,NTm,spp,no,,Stevens,
+Cercocarpus_montanus,CFP,gen,no,,Stevens,
+Chaenactis_douglasii,CFP,spp,no,,Stevens,
+Chamaesyce_maculata,WTD,spp,yes,,Stevens,
+Chamerion_angustifolium,CFP,spp,no,yes,Miller,CF in R&A; Syn. Epilobium angustifolium; in R&A 1978
+Chenopodium,WTD,gen,no,,Stevens,
+Chenopodium_capitatum,WTD,gen,no,,Stevens,
+Chenopodium_graveolens,WTD,gen,no,,Stevens,
+Cinna_latifolia,NTm,spp,no,,Stevens,
+Cirsium_arvense,NTm,spp,yes,,Stevens,
+Cirsium_canescens,NTm,gen,no,,Stevens,
+Cirsium_undulatum,NTm,spp,yes,,Stevens,
+Clematis_columbiana,NTm,gen,no,,Stevens,
+Clematis_ligusticifolia,NTm,gen,no,,Stevens,
+Collomia_linearis,CFP,spp,no,,Stevens,
+Conyza_canadensis,WTD,spp,no,,Stevens,
+Cornus_sericea,NTm,spp,no,,Stevens,
+Corydalis_aurea,NTm,spp,no,,Stevens,
+Crepis,NTm,gen,no,,Stevens,
+Cryptantha_virgata,CFP,gen,no,,Stevens,
+Cystopteris_fragilis,NA,spp,no,,Miller,Looks like R&A didn't classify any ferns
+Dactylis_glomerata,NA,spp,yes,,Stevens,
+Danthonia_spicata,NTm,gen,no,,Stevens,
+Dasiphora_fruticosa,NTm,spp,no,,Fornwalt,Syn. Potentilla fruticosa; in R&A 1978
+Delphinium_occidentale,NTm,gen,no,,Fornwalt,
+Descurainia,NTm,gen,no,,Stevens,
+Descurainia_incana,NTm,spp,no,,Stevens,
+Descurainia_sophia,NTm,spp,yes,,Stevens,
+Dodecatheon_pulchellum,NTm,spp,no,,Stevens,
+Dracocephalum_parviflorum,NA,no,no,,Miller,"Seems likely to be NTm, most relatives are, but there is a close WTD relative too"
+Elymus_elymoides,NTm,spp,no,,Stevens,
+Elymus_lanceolatus,NTm,spp,no,,Stevens,
+Elymus_trachycaulus,NTm,spp,no,,Stevens,
+Epilobium,CFP,gen,no,,Stevens,
+Epilobium_brachycarpum,CFP,spp,no,,Stevens,
+Epilobium_ciliatum,CFP,spp,no,,Stevens,
+Equisetum_arvense,NA,spp,no,,Miller,R&A didn't classify any Equisetum or anything related to them as far as I can tell. This may be too old a plant to fit into the geoflora concept…I think of them as being a northern thing today.
+Ericameria_nauseosa,WTD,spp,no,,Stevens,Syn. Chrysothamnus in R&A
+Ericameria_parryi,WTD,spp,no,,Stevens,Syn. Chrysothamnus in R&A
+Erigeron,NTm,gen,no,,Stevens,
+Erigeron_compositus,NTm,spp,no,,Stevens,
+Erigeron_divergens,NTm,spp,no,,Stevens,
+Erigeron_flagellaris,NTm,gen,no,,Stevens,
+Erigeron_pumilus,NTm,spp,no,,Stevens,
+Erigeron_subtrinervis,NTm,gen,no,,Stevens,
+Erigeron_vetensis,NTm,gen,no,,Stevens,
+Eriogonum_alatum,CFP,gen,no,,Stevens,
+Eriogonum_umbellatum,CFP,spp,no,,Stevens,
+Erysimum_capitatum,NTm,spp,no,,Stevens,
+Euphorbia_brachycera,NA,gen,no,,Miller,"Euphorbias are mostly NTm, but some are WTD. I'm not sure which this is more closely related to."
+Festuca_saximontana,NTm,spp,no,,Stevens,
+Fragaria,NTm,gen,no,,Stevens,
+Gaillardia_aristata,CFP,spp,yes,,Stevens,
+Galium_boreale,MaT,spp,no,,Stevens,
+Galium_triflorum,NTm,spp,no,yes,MIller,RnA.original = NTm
+Gayophytum_diffusum,CFP,spp,no,,Stevens,
+Gentiana,NTm,gen,no,,Stevens,
+Gentianella_amarella,NTm,spp,no,yes,Miller,related to Swertia and Frasera (NTm)
+Geranium_caespitosum,NTm,gen,no,,Stevens,
+Geranium_richardsonii,NTm,spp,no,,Stevens,
+Geum_aleppicum,NTm,spp,no,,Stevens,
+Geum_macrophyllum,NTm,spp,no,,Stevens,
+Gutierrezia_sarothrae,NTm,spp,no,,Miller,"Not sure, close relatives arne't classified. R&A didn't say anything about Townsendia (except that it was in CA but not CFP). But its closest relatives that R&A classified are NTm. If we call it NTm we should call Guterriza NTm too (its closest relative in the CA flora, which R&A didn't classify)"
+Hackelia_floribunda,NTm,spp,no,,Stevens,
+Helianthella_parryi,CFP,gen,no,,Stevens,
+Helianthus_pumilus,CFP,gen,no,,Stevens,
+Heracleum_maximum,NTm,gen,no,,Stevens,
+Hesperostipa_comata,NTm,spp,no,yes,Miller,"Now in Stipa, sister genera are NTm"
+Heterotheca_villosa,NTm,spp,no,,Stevens,
+Heuchera_parvifolia,NTm,spp,no,,Stevens,
+Hieracium_fendleri,NTm,gen,no,,Stevens,
+Hordeum_jubatum,NTm,spp,no,,Stevens,
+Hydrophyllum_fendleri,NTm,spp,no,,Stevens,
+ÌÑTriticosecale_rimpaui,NA,no,yes,,Fornwalt,Sterile hybrid; seeded post-fire; drop from analysis?
+ÌÑTriticosecale_rimpaui_(dead),NA,no,yes,,Fornwalt,Drop from analyses -- not a species
+Ipomopsis_aggregata,CFP,spp,no,,Stevens,
+Iris_missouriensis,NTm,spp,no,,Stevens,
+Jamesia_americana,CFP,spp,no,,Stevens,
+Juncus_arcticus,NTm,spp,no,,Stevens,
+Juniperus_communis,NTm,spp,no,,Stevens,
+Koeleria_macrantha,NTm,spp,no,,Stevens,
+Lactuca_serriola,NTm,spp,yes,,Stevens,
+Laennecia_schiedeana,NA,no,no,,Miller,"This species isn't in either phylogeny I've tried. Most Erigeron are NTm, but at least one former Conyza is WTD, and this species has been called Conyza. I suspect it may be WTD but I'm not sure."
+Lappula_occidentalis,CFP,gen,no,,Stevens,
+Leucocrinum_montanum,NTm,spp,no,,Stevens,
+Leucopoa_kingii,NTm,no,no,yes,Miller,Now in Festuca; all F. are NTm in R&A
+Liatris_punctata,WTD,no,no,yes,Miller,"Closest relative that R&A classified (a Brickelia) is WTD. Liatris is a great plains genus that grows in hot, dry environments."
+Linaria_vulgaris,NTm,spp,yes,,Stevens,
+Linnaea_borealis,NTm,spp,no,,Stevens,
+Lithospermum_multiflorum,NA,gen,no,,Miller,R&A didn't classify any Lithospermum or any of its sister genera. All but about two of the Boraginaceae they classified are CFP or NTm.
+Lonicera_involucrata,NTm,spp,no,,Stevens,
+Lupinus_argenteus,NTm,spp,no,,Stevens,
+Machaeranthera_bigelovii,WTD,gen,no,,Stevens,
+Maianthemum_stellatum,NTm,gen,no,,Stevens,
+Matricaria_discoidea,NTm,gen,no,,Stevens,
+Mentha_arvensis,NTm,spp,no,,Stevens,
+Mentzelia_speciosa,WTD,gen,no,,Stevens,
+Mertensia_ciliata,NA,spp,no,,Miller,"No closely related taxa were classified by R&A. Most Boraginaceae are CFP, but all of those are in younger lineages."
+Mertensia_lanceolata,NA,gen,no,,Miller,"No closely related taxa were classified by R&A. Most Boraginaceae are CFP, but all of those are in younger lineages."
+Mirabilis_hirsuta,WTD,gen,no,,Stevens,
+Mirabilis_linearis,WTD,gen,no,,Stevens,
+Moehringia_lateriflora,NTm,gen,no,,Stevens,
+Moehringia_macrophylla,NTm,spp,no,,Stevens,
+Monarda_fistulosa,NTm,gen,no,,Miller,"The Monardas and Physaria are described by R&A as Rocky Mountain Plants with ranges that slightly extend into the CA Great Basin. They are described as probably coming from the North, since crossing the Great Basin seems improbable. The words ""Rocky Mountain"" only appear a handful of times in all of R&A, but usually are in the context of talking about NTm plants when they do. So, my best guess is NTm. The closest relatives of the Monardas are CFP (the Monardella clade), next closest are NTm. "
+Monarda_pectinata,NTm,spp,no,,Miller,ibid
+Muhlenbergia_montana,WTD,spp,no,,Stevens,
+Muhlenbergia_racemosa,WTD,gen,no,,Stevens,
+Noccaea_montana,NA,spp,no,,Fornwalt,Whole clade is unknown in R&A. Syn. Thlaspi montanum;
+Oenothera_caespitosa,CFP,spp,no,,Stevens,
+Oenothera_coronopifolia,CFP,gen,no,,Stevens,
+Oenothera_villosa,CFP,spp,no,,Stevens,
+Oreochrysum_parryi,NTm,no,no,yes,Miller,Closely related to Erigeron which is NTm
+Orthocarpus_luteus,NTm,spp,no,,Stevens,
+Oryzopsis_asperifolia,NTm,no,no,yes,Miller,"Closely related to Stipa, which has NTm sister genera."
+Oxalis_dillenii,NTm,gen,no,,Stevens,
+Oxytropis,NTm,gen,no,,Stevens,
+Oxytropis_lambertii,NTm,gen,no,,Stevens,
+Oxytropis_multiceps,NTm,gen,no,,Stevens,
+Packera_cana,NTm,no,no,yes,Miller,All Packera are NTm in R&A (and so are almost all Senecio)
+Packera_fendleri,NTm,no,no,yes,Miller,All Packera are NTm in R&A (and so are almost all Senecio)
+Paronychia_jamesii,NA,gen,no,,Stevens,R&A classified as South American
+Pascopyrum_smithii,NTm,spp,no,yes,Miller,Now in Elymus; all Elymus that R&A classified are NTm
+Pedicularis_canadensis,NTm,gen,no,,Stevens,
+Pediocactus_simpsonii,WTD,no,no,yes,Miller,R&A classified all Cactaceae as WTD
+Penstemon_glaber,NTm,gen,no,,Stevens,
+Penstemon_secundiflorus,NTm,gen,no,,Stevens,
+Penstemon_virens,NTm,gen,no,,Stevens,
+Pericome_caudata,WTD,spp,no,,Stevens,
+Phacelia_alba,CFP,gen,no,,Stevens,
+Phacelia_bakeri,CFP,gen,no,,Stevens,
+Phacelia_heterophylla,CFP,spp,no,,Stevens,
+Phemeranthus_parviflorus,WTD,no,no,yes,Miller,"This is a former member of Talinum, which is actually more closely related to the genus Portulaca and Cactaceae than it is to most other Portulaceae (in the historical sense). WTD is a best guess, but it matches what I know about the phylogeny and my field experience--I had this species in  my Phd work in the Ozarks."
+Phleum_pratense,NTm,spp,yes,,Stevens,
+Physaria_vitulifera,NTm,gen,no,,Miller,"The Monardas and Physaria are described by R&A as Rocky Mountain Plants with ranges that slightly extend into the CA Great Basin. They are described as probably coming from the North, since crossing the Great Basin seems improbable. The words ""Rocky Mountain"" only appear a handful of times in all of R&A, but usually are in the context of talking about NTm plants when they do. So, my best guess is NTm. Physaria doesn't seem to be too closely related to any other CA species."
+Physocarpus_monogynus,NTm,gen,no,yes,MIller,"Most Roaceae are NTm, and so are most of its closest relatives, with a few exceptiosn. (Some Prunus are MaT) I think NTm would be a good guess if this grows in cool wet places like the Physocarpus I've known."
+Piptatherum_micranthum,NTm,spp,no,yes,Miller,"Now in Stipa. R&A didn’t classify Stipa, but its closest relatives are NTm (Bromus and Melica)"
+Poa,NTm,gen,no,,Stevens,
+Poa_annua,NTm,spp,no,,Stevens,
+Poa_compressa,NTm,spp,yes,,Stevens,
+Poa_fendleriana,NTm,spp,no,,Stevens,
+Poa_nemoralis,NTm,spp,yes,,Stevens,
+Poa_palustris,NTm,spp,yes,,Stevens,
+Poa_pratensis,NTm,spp,yes,,Stevens,
+Poa_reflexa,NTm,gen,no,,Stevens,
+Poa_sylvestris,NTm,gen,no,,Stevens,
+Polygonum_convolvulus,NTm,spp,yes,,Stevens,
+Polygonum_douglasii,NTm,spp,no,,Stevens,
+Potentilla_concinna,NTm,spp,no,,Stevens,
+Potentilla_fissa,NTm,gen,no,,Stevens,
+Potentilla_hippiana,NTm,gen,no,,Stevens,
+Potentilla_norvegica,NTm,spp,yes,,Stevens,
+Potentilla_pulcherrima,NTm,gen,no,,Stevens,
+Prunus_virginiana,NTm,spp,no,,Stevens,
+Pseudocymopterus_montanus,NTm,no,no,yes,Miller,All Apiaceae is NTm in R&A
+Pseudognaphalium_macounii,NTm,no,no,yes,Miller,All Pseudognaphaliums in R&A are NTm
+Pseudoroegneria_spicata,NTm,spp,no,yes,Miller,Now in Elymus; all Elymus that R&A classified are NTm
+Ptilagrostis_porteri,NTm,gen,no,yes,Miller,Related to Stipa; sister genera are NTm
+Pulsatilla_patens,NTm,no,no,yes,Miller,All Ranunculaceae are NTm in R&A
+Pyrola_chlorantha,NTm,spp,no,,Stevens,
+Ribes_cereum,NTm,spp,no,,Stevens,
+Ribes_inerme,NTm,spp,no,,Stevens,
+Ribes_leptanthum,NTm,gen,no,,Stevens,
+Rorippa_sphaerocarpa,NTm,spp,no,,Stevens,
+Rosa,NTm,gen,no,,Stevens,
+Rubus_deliciosus,NTm,gen,no,,Stevens,
+Rubus_idaeus,NTm,gen,yes,,Stevens,
+Rudbeckia_hirta,CFP,spp,yes,,Stevens,
+Rudbeckia_laciniata,CFP,gen,no,,Stevens,
+Salix,NTm,gen,no,,Stevens,
+Saxifraga_bronchialis,NTm,gen,no,,Stevens,
+Schizachyrium_scoparium,WTD,spp,no,,Miller,"Schizachyrium sco. (little bluestem) is described as only occuring within CA in the Colorado desert. That, and it's affinity for high-and-dry great plains sites makes me feel reasonably comfortable calling it WTD. ""Not-CFP"" in R&A"
+Scutellaria_brittonii,NTm,gen,no,,Stevens,
+Sedum_lanceolatum,NTm,spp,no,,Stevens,
+Selaginella_densa,NA,spp,no,,Miller,R&A didn't classify any of these really ancient plants apparently
+Senecio,NTm,gen,no,,Stevens,
+Senecio_eremophilus,NTm,gen,no,,Stevens,
+Senecio_spartioides,NTm,spp,no,,Stevens,
+Silene,NTm,gen,no,,Stevens,
+Silene_antirrhina,NTm,spp,no,,Stevens,
+Silene_scouleri,NTm,spp,no,,Stevens,
+Sisyrinchium_montanum,WTD,gen,no,,Stevens,
+Solanum_triflorum,WTD,spp,yes,,Stevens,
+Solidago,NTm,gen,no,,Stevens,
+Sonchus_asper,NA,spp,yes,,Stevens,
+Sporobolus_cryptandrus,WTD,spp,no,,Stevens,
+Stachys_palustris,NTm,spp,no,,Stevens,
+Symphoricarpos_albus,NTm,spp,no,,Stevens,
+Symphyotrichum_laeve,NTm,no,no,yes,MIller,All Symphyotrichum are NTm in R&A
+Symphyotrichum_porteri,NTm,no,no,yes,MIller,All Symphyotrichum are NTm in R&A
+Symphyotrichum_spathulatum,NTm,no,no,yes,MIller,All Symphyotrichum are NTm in R&A; Syn. Aster occidentalis; in R&A 1978
+Taraxacum_officinale,NTm,spp,yes,,Stevens,
+Thalictrum_fendleri,NTm,spp,no,,Stevens,
+Townsendia_grandiflora,NTm,gen,no,,Miller,"R&A didn't say anything about Townsendia (except that it was in CA but not CFP). But its closest relatives that R&A classified are NTm. If we call it NTm we should call Guterriza NTm too (its closest relative in the CA flora, which R&A didn't classify). Weber 2003: Townsendia is a N. American genus that may be related to the Asian genus Heteropappus"
+Tragopogon_dubius,NA,spp,yes,,Stevens,
+Trollius_laxus,NTm,no,no,yes,Miller,All Ranunculaceae are NTm in R&A
+unable_to_identify,NA,no,no,,Fornwalt,(ignoring)
+Urtica_dioica,NTm,spp,no,,Stevens,
+Verbascum_thapsus,NA,spp,yes,,Stevens,
+Verbena,WTD,gen,no,,Stevens,
+Veronica_americana,NTm,spp,no,,Stevens,
+Viola_adunca,NTm,spp,no,,Stevens,
+Viola_canadensis,NTm,spp,no,,Stevens,
+Yucca_glauca,WTD,spp,no,,Stevens,
+Zigadenus_elegans,NTm,gen,no,,Stevens,
