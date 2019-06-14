@@ -79,8 +79,8 @@ sp.d.long$presence_sub <- #presence in subplot (positive values in subplot)
   ifelse(is.na(sp.d.long$cover) | sp.d.long$cover==0,0,1) 
 sp.d.long <- #Remove unknown origins (includes exotics); 154 species remain
   sp.d.long[-which(is.na(sp.d.long$origin_binary)),] 
-sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "Northern"
-sp.d.long$origin_binary[sp.d.long$origin_binary=="Non-NTm"] <- "Southern"
+sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "cool-temperate"
+sp.d.long$origin_binary[sp.d.long$origin_binary=="Non-NTm"] <- "warm-xeric"
 sp.d.long$FireSeverity <- factor(sp.d.long$FireSeverity, 
                                  levels = c("Low", "Moderate", "High"))
 
@@ -161,7 +161,7 @@ p.d <- sp.d.long %>% #Data with plots separate
 
 p.d.ratio <- p.d %>% #Plot data with ratios
   group_by(Plot, FireSeverity, year) %>% 
-  summarise(Prop.NTM = richness[1]/sum(richness), #Northern is first factor level; previously had been subplot level
+  summarise(Prop.NTM = richness[1]/sum(richness), #cool-temperate is first factor level; previously had been subplot level
             richness.tot = sum(richness),
             richness.NTM = richness[1],
             richness.Non_NTM = richness[2])
@@ -174,7 +174,7 @@ sev.class.grp.cover <- sp.d.long %>% #Data with all plots grouped into severity 
 
 #p.d.ratio <- p.d %>% #Plot data with ratios #Deprecated, contained above.
 #  group_by(Plot, FireSeverity, year) %>% 
-#  summarise(Prop.NTM = richness[1]/sum(richness), #Northern is first factor level; previously had been subplot level
+#  summarise(Prop.NTM = richness[1]/sum(richness), #cool-temperate is first factor level; previously had been subplot level
 #            richness.tot = sum(richness),
 #            richness.NTM = richness[1],
 #            richness.Non_NTM = richness[2])
@@ -192,7 +192,8 @@ sev.class.grp.richness <- p.d.ratio %>% #Data with all plots grouped into severi
          se_northern, se_southern) %>%
   extract(key, c("question","origin"), "(.*)\\_(.*)") %>%
   spread(question,value)
-
+#replace(sev.class.grp.richness$origin,"northern","cool-xeric")
+#replace()
 sev.class.grp.ratio <- p.d.ratio %>% #Data with all plots grouped into severity class
   #Plus NTM ratio
   group_by(FireSeverity,year) %>%  
@@ -253,21 +254,23 @@ grid.arrange(F1a_LowSev,F1b_ModSev,F1c_HighSev,nrow=1)
 F2<-
   ggplot(sev.class.grp.richness) +
   facet_grid(. ~ FireSeverity) +
-  geom_point(aes(x=year, y=mean, col = origin)) + 
+  geom_point(aes(x=year, y=mean, 
+                 col = factor(origin, labels =c("cool-temperate","warm-xeric")))) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("gray","black"))+
   geom_errorbar(aes(x=year, ymin = mean - se, ymax = mean + se, 
-                    col = origin))+
-  geom_line(aes(x=year, y=mean, col = origin))+
+                    col = factor(origin, labels =c("cool-temperate","warm-xeric"))))+
+  geom_line(aes(x=year, y=mean, 
+                col = factor(origin, labels =c("cool-temperate","warm-xeric"))))+
   labs(title = "burn severity", y = "mean plot richness", 
        col = "biogeographic \naffinity") +
   theme_bw() +
-  theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.92, 0.48))
+  theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.55, 0.48))
 
-#pdf(file = paste0("./Figures/MS/Fig2_richness_",Sys.Date(),".pdf"),width=8,height=5)
+pdf(file = paste0("./Figures/MS/Fig2_richness_",Sys.Date(),".pdf"),width=8,height=5)
 F2
 #grid.arrange(F2a_LowSev,F2b_ModSev,F2c_HighSev,nrow=1)
-#dev.off()
+dev.off()
 
 library(lme4)
 library(pbkrtest)
@@ -286,11 +289,11 @@ m2.1 <- lmer(richness~origin_binary + (1|Plot), data=p.d)
 GetME_PVals(m2.1)
 m2.2 <- 
   lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
-       data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High",])
+       data=p.d[p.d$origin_binary=="cool-temperate" & p.d$FireSeverity == "High",])
 GetME_PVals(m2.2)
-m2.2.outlier <- #Effect of removing outlier; only testing this for "Southern" and "High" as per reviewer comment.
+m2.2.outlier <- #Effect of removing outlier; only testing this for "warm-xeric" and "High" as per reviewer comment.
   lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
-       data=p.d[p.d$origin_binary=="Northern" & p.d$FireSeverity == "High" & p.d$Plot!="tc0523",])
+       data=p.d[p.d$origin_binary=="cool-temperate" & p.d$FireSeverity == "High" & p.d$Plot!="tc0523",])
 GetME_PVals(m2.2.outlier)
 #mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above. Deprecated, this has been fixed and now using mixed-effects models as appropriate
 
@@ -301,7 +304,7 @@ F3a <-
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   geom_smooth(method="lm")+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(y= "proportion of flora \nwitn north-temperate affinity",
+  labs(y= "proportion of flora \nwitn cool-temperate affinity",
        col = "Fire severity", tag = "a") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -314,7 +317,7 @@ F3b <-
   geom_vline(aes(xintercept = 2002), lty = 2) +
   geom_line(aes(x=year, y=mean_Prop.NTM, col = FireSeverity))+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(y= "meanproportion of flora \nwitn north-temperate affinity",
+  labs(y= "mean proportion of flora \nwitn cool-temperate affinity",
        col = "Fire severity", tag = "b") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -347,6 +350,7 @@ GetME_PVals(mr.1.outlier)
 
 ####7. Plots- colonizations/extinctions####
 #pdf(file = paste0("./Figures/MS/Fig4_Colonization_Extinction",Sys.Date(),".pdf"),width=8,height=5)
+#deprecated
 ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
   geom_bar(aes(x=year,y=-abs_extinctions),
            position = "dodge", stat = "summary", fun.y = "mean") + 
@@ -535,21 +539,22 @@ p_cc <-
   labs(y = "canopy cover (%)",
        x = "fire severity")
 
-pdf(file = paste0("./Figures/MS/FigA2_",Sys.Date(),".pdf"),width=8,height=10)
+#pdf(file = paste0("./Figures/MS/FigA2_",Sys.Date(),".pdf"),width=8,height=10)
 grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,p_cc, ncol=3)
-dev.off()
+#dev.off()
 
 ##8.3: Compare biogeographic ratio in 1997 (prefire) as a function of canopy cover
 summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre))
 p_cc_ntm_all <-
-  ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovLive_FVS)) +
+  ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovLive_FVS, col = FireSeverity)) +
   geom_point() +
   geom_smooth(method = "lm", color = "black") +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw() +
-  labs(title = "all plots", 
-       y = "proportion of flora \nwitn north-temperate affinity", 
-       x = "pre-fire canopy cover (%)", tag = "a") +
+  labs(
+       y = "proportion of flora \nwitn cool-temperate affinity", 
+       x = "pre-fire canopy cover (%)", col = "eventual fire\nseverity") +
+  scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2")) +
   theme(plot.title = element_text(hjust = 0.5))
 summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre[env.d.pre$FireSeverity=="low",]))
 p_cc_ntm_ls <-
@@ -559,11 +564,12 @@ p_cc_ntm_ls <-
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw()+
   labs(title = "low severity plots only", 
-       y = "proportion of flora \nwitn north-temperate affinity", 
+       y = "proportion of flora \nwitn cool-temperate affinity", 
        x = "pre-fire canopy cover (%)", tag = "b") +
   theme(plot.title = element_text(hjust = 0.5))
 
 
-pdf(file = paste0("./Figures/MS/FigA3_",Sys.Date(),".pdf"),width=9,height=9)
-grid.arrange(p_cc_ntm_all,p_cc_ntm_ls,ncol=1)
+pdf(file = paste0("./Figures/MS/Fig5_",Sys.Date(),".pdf"),width=9,height=4.5)
+#grid.arrange(p_cc_ntm_all,p_cc_ntm_ls,ncol=1) #deprecated
+p_cc_ntm_all
 dev.off()
