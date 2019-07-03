@@ -79,10 +79,11 @@ sp.d.long$presence_sub <- #presence in subplot (positive values in subplot)
   ifelse(is.na(sp.d.long$cover) | sp.d.long$cover==0,0,1) 
 sp.d.long <- #Remove unknown origins (includes exotics); 154 species remain
   sp.d.long[-which(is.na(sp.d.long$origin_binary)),] 
-sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "cool-temperate"
+sp.d.long$origin_binary[sp.d.long$origin_binary=="NTm"] <- "cool-mesic"
 sp.d.long$origin_binary[sp.d.long$origin_binary=="Non-NTm"] <- "warm-xeric"
 sp.d.long$FireSeverity <- factor(sp.d.long$FireSeverity, 
-                                 levels = c("Low", "Moderate", "High"))
+                                 levels = c("Low", "Moderate", "High"),
+                                 labels = c("low", "moderate", "high"))
 
 ####3. Identify colonizations/extinctions####
 sp.d.long <- 
@@ -129,9 +130,9 @@ sp.d.long <-
 which.extinct <- 
   sp.d.long[which(sp.d.long$abs.fire.extinct == 1 & sp.d.long$year==2003),] %>%
   group_by(SciName) %>%
-  summarise(hs_plots = length(Plot[FireSeverity == "High"]),
-            ms_plots = length(Plot[FireSeverity == "Moderate"]),
-            ls_plots = length(Plot[FireSeverity == "Low"]),
+  summarise(hs_plots = length(Plot[FireSeverity == "high"]),
+            ms_plots = length(Plot[FireSeverity == "moderate"]),
+            ls_plots = length(Plot[FireSeverity == "low"]),
             origin = unique(origin_binary)
             )
 which.extinct <- which.extinct[with(which.extinct, order(origin,SciName)),]
@@ -139,9 +140,9 @@ which.extinct <- which.extinct[with(which.extinct, order(origin,SciName)),]
 which.colonize <- 
   sp.d.long[which(sp.d.long$abs.fire.colonize == 1 & sp.d.long$year==2003),] %>%
   group_by(SciName) %>%
-  summarise(hs_plots = length(Plot[FireSeverity == "High"]),
-            ms_plots = length(Plot[FireSeverity == "Moderate"]),
-            ls_plots = length(Plot[FireSeverity == "Low"]),
+  summarise(hs_plots = length(Plot[FireSeverity == "high"]),
+            ms_plots = length(Plot[FireSeverity == "moderate"]),
+            ls_plots = length(Plot[FireSeverity == "low"]),
             origin = unique(origin_binary)
   )
 which.colonize <- which.colonize[with(which.colonize, order(origin,SciName)),]
@@ -161,7 +162,7 @@ p.d <- sp.d.long %>% #Data with plots separate
 
 p.d.ratio <- p.d %>% #Plot data with ratios
   group_by(Plot, FireSeverity, year) %>% 
-  summarise(Prop.NTM = richness[1]/sum(richness), #cool-temperate is first factor level; previously had been subplot level
+  summarise(Prop.NTM = richness[1]/sum(richness), #cool-mesic is first factor level; previously had been subplot level
             richness.tot = sum(richness),
             richness.NTM = richness[1],
             richness.Non_NTM = richness[2])
@@ -174,7 +175,7 @@ sev.class.grp.cover <- sp.d.long %>% #Data with all plots grouped into severity 
 
 #p.d.ratio <- p.d %>% #Plot data with ratios #Deprecated, contained above.
 #  group_by(Plot, FireSeverity, year) %>% 
-#  summarise(Prop.NTM = richness[1]/sum(richness), #cool-temperate is first factor level; previously had been subplot level
+#  summarise(Prop.NTM = richness[1]/sum(richness), #cool-mesic is first factor level; previously had been subplot level
 #            richness.tot = sum(richness),
 #            richness.NTM = richness[1],
 #            richness.Non_NTM = richness[2])
@@ -206,42 +207,42 @@ sev.class.grp.ratio <- p.d.ratio %>% #Data with all plots grouped into severity 
 ##Cover is pretty low and not really that interesting.
 F1a_LowSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                  sev.class.grp.cover$FireSeverity == "Low" ,]) +
+                  sev.class.grp.cover$FireSeverity == "low" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
   geom_errorbar(aes(x=year, ymin = mean_cover - se, ymax = mean_cover + se, 
                     col = origin_binary))+
   geom_line(aes(x=year, y=mean_cover, col = origin_binary))+
-  labs(title = "Low severity", y = "mean % cover", 
+  labs(title = "low severity", y = "mean % cover", 
        col = "biogeographic \naffinity") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),  legend.position = "none")
 
 F1b_ModSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                        sev.class.grp.cover$FireSeverity == "Moderate" ,]) +
+                        sev.class.grp.cover$FireSeverity == "moderate" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
   geom_errorbar(aes(x=year, ymin = mean_cover - se, ymax = mean_cover + se, 
                     col = origin_binary))+
   geom_line(aes(x=year, y=mean_cover, col = origin_binary))+
-  labs(title = "Moderate severity", y = "mean % cover", 
+  labs(title = "moderate severity", y = "mean % cover", 
        col = "biogeographic \naffinity") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), legend.position = "none")
 
 F1c_HighSev <- ggplot(
   sev.class.grp.cover[!is.na(sev.class.grp.cover$origin_binary) & 
-                        sev.class.grp.cover$FireSeverity == "High" ,]) +
+                        sev.class.grp.cover$FireSeverity == "high" ,]) +
   geom_point(aes(x=year, y=mean_cover, col = origin_binary)) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("blue","darkred"))+
   geom_errorbar(aes(x=year, ymin = mean_cover - se, ymax = mean_cover + se, 
                     col = origin_binary))+
   geom_line(aes(x=year, y=mean_cover, col = origin_binary))+
-  labs(title = "High severity", y = "mean % cover", 
+  labs(title = "high severity", y = "mean % cover", 
        col = "biogeographic \naffinity") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.78, 0.91))
@@ -255,14 +256,14 @@ F2<-
   ggplot(sev.class.grp.richness) +
   facet_grid(. ~ FireSeverity) +
   geom_point(aes(x=year, y=mean, 
-                 col = factor(origin, labels =c("cool-temperate","warm-xeric")))) + 
+                 col = factor(origin, labels =c("cool-mesic","warm-xeric")))) + 
   geom_vline(aes(xintercept = 2002), lty = 2) +
   scale_color_manual(values = c("gray","black"))+
   geom_errorbar(aes(x=year, ymin = mean - se, ymax = mean + se, 
-                    col = factor(origin, labels =c("cool-temperate","warm-xeric"))))+
+                    col = factor(origin, labels =c("cool-mesic","warm-xeric"))))+
   geom_line(aes(x=year, y=mean, 
-                col = factor(origin, labels =c("cool-temperate","warm-xeric"))))+
-  labs(title = "burn severity", y = "mean plot richness", 
+                col = factor(origin, labels =c("cool-mesic","warm-xeric"))))+
+  labs(title = "fire severity", y = "mean plot richness", 
        col = "biogeographic \naffinity") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5), legend.position = c(0.55, 0.48))
@@ -289,11 +290,11 @@ m2.1 <- lmer(richness~origin_binary + (1|Plot), data=p.d)
 GetME_PVals(m2.1)
 m2.2 <- 
   lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
-       data=p.d[p.d$origin_binary=="cool-temperate" & p.d$FireSeverity == "High",])
+       data=p.d[p.d$origin_binary=="cool-mesic" & p.d$FireSeverity == "high",])
 GetME_PVals(m2.2)
-m2.2.outlier <- #Effect of removing outlier; only testing this for "warm-xeric" and "High" as per reviewer comment.
+m2.2.outlier <- #Effect of removing outlier; only testing this for "warm-xeric" and "high" as per reviewer comment.
   lmer(richness~year + (1|Plot), #Can adjust origin to N/S and Fire Severity to L/M/H
-       data=p.d[p.d$origin_binary=="cool-temperate" & p.d$FireSeverity == "High" & p.d$Plot!="tc0523",])
+       data=p.d[p.d$origin_binary=="cool-mesic" & p.d$FireSeverity == "high" & p.d$Plot!="tc0523",])
 GetME_PVals(m2.2.outlier)
 #mixed effects model not converging because runs out of degrees of freedom (because not looking at treatment effect, just temporal trends within given treatment type). Use regular linear models for this as above. Deprecated, this has been fixed and now using mixed-effects models as appropriate
 
@@ -302,10 +303,11 @@ F3a <-
   ggplot(p.d.ratio, aes(x=year,y=Prop.NTM,col=FireSeverity))+
   geom_point()+
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
+  geom_vline(aes(xintercept = 2002), lty = 2) +
   geom_smooth(method="lm")+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(y= "proportion of flora \nwitn cool-temperate affinity",
-       col = "Fire severity", tag = "a") +
+  labs(y= "proportion of flora \nwitn cool-mesic affinity",
+       col = "fire severity", tag = "a") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -317,8 +319,8 @@ F3b <-
   geom_vline(aes(xintercept = 2002), lty = 2) +
   geom_line(aes(x=year, y=mean_Prop.NTM, col = FireSeverity))+
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
-  labs(y= "mean proportion of flora \nwitn cool-temperate affinity",
-       col = "Fire severity", tag = "b") +
+  labs(y= "mean proportion of flora \nwitn cool-mesic affinity",
+       col = "fire severity", tag = "b") +
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
 
@@ -336,14 +338,14 @@ plot(Prop.NTM~Actual_Year, data=p.d.ratio[p.d.ratio$year==1997,])
 #No significant differences in pre-fire ratio due to sampling year
 
 #Significant trends in ratio over time?
-mr.1 <- #Change between "Low", "Moderate" and "High"
-  lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="High",])
+mr.1 <- #Change between "low", "moderate" and "high"
+  lmer(Prop.NTM ~ year + (1|Plot), data = p.d.ratio[p.d.ratio$FireSeverity=="high",])
 GetME_PVals(mr.1)
 #Yes for moderate and high
 
 mr.1.outlier <- #Test effect of removing outlier; negligible. 
   lmer(Prop.NTM ~ year + (1|Plot), 
-       data = p.d.ratio[p.d.ratio$FireSeverity=="High" & p.d.ratio$Plot!="tc0523",])
+       data = p.d.ratio[p.d.ratio$FireSeverity=="high" & p.d.ratio$Plot!="tc0523",])
 GetME_PVals(mr.1.outlier)
 
 
@@ -366,7 +368,8 @@ ggplot(p.d,aes(col=origin_binary,fill=FireSeverity)) +
                      labels = c("2002 \n(fire year)", c(2003:2007)))+
   geom_hline(aes(yintercept=0))+
   geom_vline(aes(xintercept = 2002), lty = 2) +
-  labs(title="permanent species colonizations or extinctions \nfrom pre-fire",
+  labs(title="permanent species colonizations or extinctions \nfrom pre-fire", 
+       col = "fire severity",
        y = "# extinctions                           # colonizations")+
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5))
@@ -386,11 +389,12 @@ ggplot(p.d,aes(fill=FireSeverity)) +
                fun.data = mean_se, geom = "errorbar",position="dodge")+ 
   scale_fill_manual(values = c("forestgreen","darkgoldenrod1","red2"))+
   scale_colour_manual(values=c("gray","black"))+
-  scale_x_continuous(breaks=c(2002:2007), limits = c(2002, 2007.5),
-                     labels = c("2002 \n(fire year)", c(2003:2007)))+
+  scale_x_continuous(breaks=c(2002:2007), limits = c(2002, 2007.5)) +
+#                     labels = c("2002 \n(fire year)", c(2003:2007)))+
   geom_hline(aes(yintercept=0))+
   geom_vline(aes(xintercept = 2002), lty = 2) +
-  labs(y = "# extinctions                            # colonizations")+
+  labs(fill = "fire severity",
+       y = "# extinctions                            # colonizations")+
   theme_bw() +
   theme(plot.title = element_text(hjust = 0.5),
         legend.position = c(0.9,0.18))
@@ -547,13 +551,13 @@ grid.arrange(p_elev,p_asp,p_slp,p_soil,p_litt,p_wood,p_tph,p_ba,p_cc, ncol=3)
 summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre))
 p_cc_ntm_all <-
   ggplot(env.d.pre, aes (y = prop.NTM, x = CanCovLive_FVS, col = FireSeverity)) +
-  geom_point() +
+  geom_point(size = 3) +
   geom_smooth(method = "lm", color = "black") +
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw() +
   labs(
-       y = "proportion of flora \nwitn cool-temperate affinity", 
-       x = "pre-fire canopy cover (%)", col = "eventual fire\nseverity") +
+       y = "proportion of pre-fire flora \nwitn cool-mesic affinity", 
+       x = "pre-fire canopy cover (%)", col = "fire severity") +
   scale_color_manual(values = c("forestgreen","darkgoldenrod1","red2")) +
   theme(plot.title = element_text(hjust = 0.5))
 summary(lm(prop.NTM ~ CanCovLive_FVS, data = env.d.pre[env.d.pre$FireSeverity=="low",]))
@@ -564,7 +568,7 @@ p_cc_ntm_ls <-
   #geom_text(aes(label = Plot, hjust = 0, vjust = 0)) +
   theme_bw()+
   labs(title = "low severity plots only", 
-       y = "proportion of flora \nwitn cool-temperate affinity", 
+       y = "proportion of pre-fire flora \nwitn cool-mesic affinity", 
        x = "pre-fire canopy cover (%)", tag = "b") +
   theme(plot.title = element_text(hjust = 0.5))
 
