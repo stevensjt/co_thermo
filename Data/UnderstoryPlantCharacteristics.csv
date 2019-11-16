@@ -1,0 +1,192 @@
+SciName,Origin,CAMatch,Exotic,ExpertClass,Notes
+Acer_glabrum,NTm,spp,no,no,
+Achillea_millefolium,NTm,spp,no,no,
+Achnatherum_hymenoides,NTm,no,no,yes,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Achnatherum_nelsonii,NTm,no,no,yes,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Achnatherum_scribneri,NTm,no,no,yes,"R&A didn’t classify Achnatherum (Stipa), but its closest relatives are NTm (Bromus and Melica)"
+Agoseris_aurantiaca,NTm,spp,no,no,
+Agropyron_cristatum,NTm,gen,yes,no,
+Agrostis_scabra,NTm,spp,no,no,
+Aliciella_pinnatifida,CFP,no,no,yes,All other Aliciellas and most Polemoniaceaes are CFP
+Allium_cernuum,NTm,gen,no,no,
+Amaranthus_retroflexus,WTD,spp,yes,no,
+Androsace_septentrionalis,NTm,spp,no,no,
+Anemone_cylindrica,NTm,gen,no,no,
+Antennaria_neglecta,NTm,gen,no,no,
+Antennaria_parvifolia,NTm,gen,no,no,
+Antennaria_rosea,NTm,spp,no,no,
+Apocynum_androsaemifolium,NA,spp,no,no,R&A didn't classify any Apocynaceae
+Aquilegia_coerulea,NTm,gen,no,no,
+Arabis_fendleri,NTm,gen,no,no,
+Arabis_glabra,NTm,spp,no,no,
+Arabis_hirsuta,NTm,spp,no,no,
+Arctostaphylos_uva-ursi,NTm,spp,no,yes,"R&A classified all Acrtostaphylos as MaT, but given the circumboreal distribution of this species NTm seems more appropriate"
+Arenaria_hookeri,NTm,gen,no,no,
+Artemisia_campestris,NTm,spp,no,no,
+Artemisia_frigida,NTm,gen,no,no,
+Artemisia_ludoviciana,NTm,spp,no,no,
+Astragalus_alpinus,MaT,gen,no,no,
+Astragalus_miser,MaT,gen,no,no,
+Astragalus_parryi,MaT,gen,no,no,
+Axyris_amaranthoides,NTm,no,yes,yes,
+Bahia_dissecta,WTD,spp,no,no,
+Besseya_plantaginea,NA,no,no,no,"Plantago (only Plantaginaceae in R&A) is WTD, but some other lamiales are NTm; species was formerly in Scrophulariaceae, so taxonomy has changed significantly since R&A's time"
+Blepharoneuron_tricholepis,WTD,spp,no,no,
+Bouteloua_gracilis,WTD,spp,no,no,
+Brickellia_eupatorioides,WTD,gen,no,no,
+Brickellia_grandiflora,WTD,spp,no,no,
+Bromus_ciliatus,NTm,spp,no,no,
+Bromus_inermis,NTm,spp,yes,no,
+Bromus_tectorum,NTm,spp,yes,no,
+Calamagrostis_purpurascens,NTm,spp,no,no,
+Campanula_rotundifolia,NTm,spp,no,no,
+Carduus/Cirsium,NTm,gen,yes,yes,"Cirsium is NTm according to R&A, but many are exotic; Carduus is all exotic in NA"
+Carduus_nutans,NTm,no,yes,yes,
+Carex,NTm,gen,no,no,
+Castilleja_integra,NTm,gen,no,no,
+Castilleja_miniata,NTm,spp,no,no,
+Cerastium_arvense,NTm,spp,no,no,
+Cercocarpus_montanus,CFP,gen,no,no,
+Chaenactis_douglasii,CFP,spp,no,no,
+Chamaesyce_maculata,WTD,spp,yes,no,
+Chamerion_angustifolium,CFP,no,no,yes,Syn. Epilobium in R&A
+Chenopodium,WTD,gen,no,no,
+Chenopodium_capitatum,WTD,gen,no,no,
+Cirsium_arvense,NTm,spp,yes,no,
+Cirsium_canescens,NTm,gen,no,no,
+Cirsium_undulatum,NTm,spp,yes,no,"This species is generally not considered exotic to Colorado; however it was classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Clematis_columbiana,NTm,gen,no,no,
+Collomia_linearis,CFP,spp,no,no,
+Conyza_canadensis,WTD,spp,no,no,
+Corydalis_aurea,NTm,spp,no,no,
+Crepis,NTm,gen,no,no,
+Cryptantha_virgata,CFP,gen,no,no,
+Cystopteris_fragilis,NA,spp,no,no,Looks like R&A didn't classify any ferns
+Descurainia,NTm,gen,no,no,
+Descurainia_incana,NTm,spp,no,no,
+Dracocephalum_parviflorum,NA,no,no,no,"Seems likely to be NTm, as most relatives are, but there is a close WTD relative too"
+Elymus_elymoides,NTm,spp,no,no,
+Elymus_lanceolatus,NTm,spp,no,no,
+Elymus_trachycaulus,NTm,spp,no,no,
+Epilobium,CFP,gen,no,no,
+Epilobium_brachycarpum,CFP,spp,no,no,
+Epilobium_ciliatum,CFP,spp,no,no,
+Ericameria_nauseosa,WTD,gen,no,no,Syn. Chrysothamnus in R&A
+Erigeron,NTm,gen,no,no,
+Erigeron_compositus,NTm,spp,no,no,
+Erigeron_divergens,NTm,spp,no,no,
+Erigeron_flagellaris,NTm,gen,no,no,
+Erigeron_pumilus,NTm,spp,no,no,
+Erigeron_subtrinervis,NTm,gen,no,no,
+Erigeron_vetensis,NTm,gen,no,no,
+Eriogonum_alatum,CFP,gen,no,no,
+Eriogonum_umbellatum,CFP,spp,no,no,
+Erysimum_capitatum,NTm,spp,no,no,
+Euphorbia_brachycera,NA,no,no,no,"Euphorbias are mostly NTm, but some are WTD; I'm not sure which this is more closely related to"
+Festuca_saximontana,NTm,spp,no,no,
+Fragaria,NTm,gen,no,no,
+Gayophytum_diffusum,CFP,spp,no,no,
+Gentiana,NTm,gen,no,no,
+Gentianella_amarella,NTm,no,no,yes,Related to Swertia and Frasera (NTm)
+Geranium_caespitosum,NTm,gen,no,no,
+Gutierrezia_sarothrae,NTm,no,no,yes,"Close relatives aren't classified; R&A didn't say anything about Townsendia (except that it was in CA but not CFP), but its closest relatives that R&A classified are NTm; if we call it NTm we should call Gutierrezia NTm too (its closest relative in the CA flora, which R&A didn't classify)"
+Helianthus_pumilus,CFP,gen,no,no,
+Hesperostipa_comata,NTm,no,no,yes,"Now in Stipa, sister genera are NTm"
+Heterotheca_villosa,NTm,spp,no,no,
+Heuchera_parvifolia,NTm,spp,no,no,
+Hieracium_fendleri,NTm,gen,no,no,
+Hordeum_jubatum,NTm,spp,no,no,
+Ipomopsis_aggregata,CFP,spp,no,no,
+Jamesia_americana,CFP,spp,no,no,
+Juniperus_communis,NTm,spp,no,no,
+Koeleria_macrantha,NTm,spp,no,no,
+Lactuca_serriola,NTm,spp,yes,no,
+Laennecia_schiedeana,NA,no,no,no,"This species isn't in either phylogeny tried; most Erigeron are NTm, but at least one former Conyza is WTD, and this species has been called Conyza; suspect it may be WTD but not sure"
+Lappula_occidentalis,CFP,gen,no,no,
+Leucocrinum_montanum,NTm,spp,no,no,
+Leucopoa_kingii,NTm,no,no,yes,Syn. Festuca; all Festuca are NTm in R&A
+Liatris_punctata,WTD,no,no,yes,"Closest relative that R&A classified (a Brickelia) is WTD; Liatris is a great plains genus that grows in hot, dry environments"
+Linaria_vulgaris,NTm,spp,yes,no,
+Lithospermum_multiflorum,NA,gen,no,no,R&A didn't classify any Lithospermum or any of its sister genera; all but about two of the Boraginaceae they classified are CFP or NTm
+Machaeranthera_bigelovii,WTD,gen,no,no,
+Maianthemum_stellatum,NTm,gen,no,no,
+Matricaria_discoidea,NTm,gen,no,no,"This species is generally considered exotic to Colorado; however it was not classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Mentzelia_speciosa,WTD,gen,no,no,
+Mertensia_ciliata,NA,spp,no,no,"No closely related taxa were classified by R&A; most Boraginaceae are CFP, but all of those are in younger lineages"
+Mertensia_lanceolata,NA,gen,no,no,"No closely related taxa were classified by R&A; most Boraginaceae are CFP, but all of those are in younger lineages"
+Mirabilis_hirsuta,WTD,gen,no,no,
+Mirabilis_linearis,WTD,gen,no,no,
+Muhlenbergia_montana,WTD,spp,no,no,
+Noccaea_montana,NA,no,no,no,Whole clade is unknown in R&A; syn. Thlaspi montanum
+Oenothera_caespitosa,CFP,spp,no,no,
+Oenothera_villosa,CFP,spp,no,no,
+Oreochrysum_parryi,NTm,no,no,yes,Closely related to Erigeron which is NTm
+Orthocarpus_luteus,NTm,spp,no,no,
+Oryzopsis_asperifolia,NTm,no,no,yes,"Closely related to Stipa, which has NTm sister genera"
+Oxytropis,NTm,gen,no,no,
+Oxytropis_lambertii,NTm,gen,no,no,
+Oxytropis_multiceps,NTm,gen,no,no,
+Packera_cana,NTm,no,no,yes,All Packera are NTm in R&A (and so are almost all Senecio)
+Packera_fendleri,NTm,no,no,yes,All Packera are NTm in R&A (and so are almost all Senecio)
+Paronychia_jamesii,NA,gen,no,no,R&A classified as South American
+Pediocactus_simpsonii,WTD,no,no,yes,R&A classified all Cactaceae as WTD
+Penstemon_glaber,NTm,gen,no,no,
+Penstemon_secundiflorus,NTm,gen,no,no,
+Penstemon_virens,NTm,gen,no,no,
+Pericome_caudata,WTD,spp,no,no,
+Phacelia_heterophylla,CFP,spp,no,no,
+Phemeranthus_parviflorus,WTD,no,no,yes,"This is a former member of Talinum, which is actually more closely related to the genus Portulaca and Cactaceae than it is to most other Portulaceae (in the historical sense); WTD is a best guess, but it matches what I know about the phylogeny and my field experience--I had this species in  my Phd work in the Ozarks."
+Phleum_pratense,NTm,spp,yes,no,
+Physaria_vitulifera,NTm,no,no,yes,"Monarda and Physaria are described by R&A as Rocky Mountain plants with ranges that slightly extend into the CA Great Basin;  they are described as probably coming from the North, since crossing the Great Basin seems improbable. The words ""Rocky Mountain"" only appear a handful of times in all of R&A, but usually are in the context of talking about NTm plants when they do. So, my best guess is NTm. Physaria doesn't seem to be too closely related to any other CA species."
+Physocarpus_monogynus,NTm,no,no,yes,"Most Rosaceae are NTm, and so are most of its closest relatives, with a few exceptions (some Prunus are MaT); I think NTm would be a good guess if this grows in cool wet places like the Physocarpus I've known"
+Poa,NTm,gen,no,no,
+Poa_annua,NTm,spp,no,no,"This species is generally considered exotic to Colorado; however it was not classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Poa_fendleriana,NTm,spp,no,no,
+Poa_pratensis,NTm,spp,yes,no,
+Poa_reflexa,NTm,gen,no,no,
+Polygonum_douglasii,NTm,spp,no,no,
+Potentilla_fissa,NTm,gen,no,no,
+Potentilla_hippiana,NTm,gen,no,no,
+Potentilla_norvegica,NTm,spp,yes,no,"This species is generally not considered exotic to Colorado; however it was classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Potentilla_pulcherrima,NTm,gen,no,no,
+Prunus_virginiana,NTm,spp,no,no,
+Pseudocymopterus_montanus,NTm,no,no,yes,All Apiaceae are NTm in R&A
+Pseudognaphalium_macounii,NTm,no,no,yes,All Pseudognaphaliums in R&A are NTm
+Pseudoroegneria_spicata,NTm,no,no,yes,Now in Elymus; all Elymus that R&A classified are NTm
+Pulsatilla_patens,NTm,no,no,yes,All Ranunculaceae are NTm in R&A
+Ribes_cereum,NTm,spp,no,no,
+Ribes_inerme,NTm,spp,no,no,
+Rosa,NTm,gen,no,no,
+Rubus_deliciosus,NTm,gen,no,no,
+Rubus_idaeus,NTm,gen,yes,no,"This species is generally not considered exotic to Colorado; however it was classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Rudbeckia_hirta,CFP,spp,yes,no,"This species is generally not considered exotic to Colorado; however it was classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Salix,NTm,gen,no,no,
+Saxifraga_bronchialis,NTm,gen,no,no,
+Schizachyrium_scoparium,WTD,no,no,yes,"Schizachyrium scoparium (little bluestem) is described as only occuring within CA in the Colorado desert; that, and it's affinity for high-and-dry great plains sites makes me feel reasonably comfortable calling it WTD ""Not-CFP"" in R&A"
+Scutellaria_brittonii,NTm,gen,no,no,
+Sedum_lanceolatum,NTm,spp,no,no,
+Selaginella_densa,NA,spp,no,no,R&A didn't classify any of these really ancient plants
+Senecio,NTm,gen,no,no,
+Senecio_eremophilus,NTm,gen,no,no,
+Senecio_spartioides,NTm,spp,no,no,
+Silene,NTm,gen,no,no,
+Silene_antirrhina,NTm,spp,no,no,
+Silene_scouleri,NTm,spp,no,no,
+Solanum_triflorum,WTD,spp,yes,no,"This species is generally not considered exotic to Colorado; however it was classified as exotic in the Harrison and Grace (2007) dataset, and we retained this classification"
+Solidago,NTm,gen,no,no,
+Sonchus_asper,NA,spp,yes,no,
+Symphoricarpos_albus,NTm,spp,no,no,
+Symphyotrichum_laeve,NTm,no,no,yes,All Symphyotrichum are NTm in R&A
+Symphyotrichum_porteri,NTm,no,no,yes,All Symphyotrichum are NTm in R&A
+Taraxacum_officinale,NTm,spp,yes,no,
+Thalictrum_fendleri,NTm,spp,no,no,
+Townsendia_grandiflora,NTm,no,no,yes,"R&A didn't say anything about Townsendia (except that it was in CA but not CFP). But its closest relatives that R&A classified are NTm. If we call it NTm we should call Guterriza NTm too (its closest relative in the CA flora, which R&A didn't classify). Weber 2003: Townsendia is a N. American genus that may be related to the Asian genus Heteropappus"
+Tragopogon_dubius,NA,spp,yes,no,
+Triticosecale_rimpaui,NA,no,yes,no,Sterile hybrid seeded post-fire
+Triticosecale_rimpaui_(dead),NA,no,yes,no,Dead sterile hybrid seeded post-fire; drop from analysis
+unable_to_identify,NA,no,no,no,Drop from analysis
+Verbascum_thapsus,NA,spp,yes,no,
+Verbena,WTD,gen,no,no,
+Viola_adunca,NTm,spp,no,no,
+Yucca_glauca,WTD,gen,no,no,
+Zigadenus_elegans,NTm,gen,no,no,
